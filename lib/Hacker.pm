@@ -34,14 +34,9 @@ sub new {
 		@_,
 	);
 	
-	state $instant;
+	my $self = {%opts};
 	
-	unless (defined $instant) {
-		$instant = {%opts};
-		$instant = bless $instant, $class;	
-	}
-
-	return $instant;
+	return bless $self, $class;	
 }
 
 sub parse_note {
