@@ -8,13 +8,12 @@ use Hacker::Effect::Transpose;
 
 my $kick = Hacker::Synth::Sampler->new(file => 'Samples/extra/kick_029.flac');
 my $hat  = Hacker::Synth::Sampler->new(file => 'Samples/extra/hat_003.flac');
-my $seq  = Hacker::Synth::Sequensor->new(sample => [$hat->signal(-12)]);
+my $seq  = Hacker::Synth::Sequensor->new(sample => [$hat->signal(-12)], bpm => 180);
 
 my @c1 = ($kick->signal(-12), $kick->signal(-12), Hacker::Synth::Silence->signal(0, 1)) x 12;
 my @c2  = $seq->signal('1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1');
-#my @c2 = ($hat->signal(-24)) x 24;
 
-#my @c3 = Hacker::Effect::Transpose->new(value => -3)->process(Hacker::Effect::Delay->new(original_level => 0)->process(@c2));
+my @c3 = Hacker::Effect::Transpose->new(value => -3)->process(Hacker::Effect::Delay->new(original_level => 0)->process(@c2));
 
 my $mixer = new Hacker::Mixer(channels => [\@c1, \@c2]); #, \@c3]);
 $mixer->master;

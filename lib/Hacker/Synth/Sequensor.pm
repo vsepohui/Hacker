@@ -43,7 +43,7 @@ sub render_pattern {
 	
 	my @steps = split /,/, $pattern;
 	
-	my $step_time = $self->{bpm} / (60 * 4);
+	my $step_time = 60 / $self->{bpm};
 	my $max = $step_time * scalar (@steps) * 44100;
 	
 	my $next_step = 1;
