@@ -108,5 +108,21 @@ sub triangle {
 	return Hacker::Synth::Triangle->generate(@_);
 }
 
+sub load_project {
+	my $self = shift;
+	my $file = shift;
+	
+	my $project;
+
+	my $fi;
+	open $fi, $file;
+	$project = join '', <$fi>;
+	close $fi;
+
+	my @signal = eval $project; die $@ if $@;
+	
+	return @signal;
+}
+
 
 1;

@@ -3,7 +3,8 @@
 use 5.022;
 use warnings;
 
-use lib 'lib';
+BEGIN {use FindBin qw($Bin); require "$Bin/_init.pl";};
+
 use Hacker;
 use Hacker::Synth::Sun;
 use Hacker::Synth::Saw;

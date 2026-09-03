@@ -43,8 +43,8 @@ sub init {
 
 	my $c = $class.'::'.$driver;
 	
-	eval  "use $c";
-	my $player = eval "new $c";
+	eval "use $c"; die $@ if $@;
+	my $player = eval "new $c"; die $@ if $@;
 	return $player;
 }
 
