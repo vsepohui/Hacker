@@ -70,5 +70,23 @@ sub sun {
 	return $y;
 }
 
+sub saw {
+	my $class  = shift;
+	my $offset = shift;
+	
+	my ($x, $y);
+	
+	my $step = int $offset;
+	if ($step % 2 == 0) {
+		$x = $offset - $step;
+		$y = 1;
+	} else {
+		$x = $offset - $step;
+		$y = -1;
+	}
+	
+	return $y;
+}
+
 
 1;

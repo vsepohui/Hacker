@@ -7,7 +7,7 @@ use lib 'lib';
 
 use Hacker;
 
-Hacker->play(map {int (Hacker->sun($_ * 110 / 44100.0)+0.5)} 0 .. 44100 * 5);
+Hacker->play(map {Hacker->saw($_ * 110 / 44100.0)} 0 .. 44100 * 5);
 
 
 
