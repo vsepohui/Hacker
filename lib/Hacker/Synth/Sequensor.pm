@@ -53,7 +53,6 @@ sub render_pattern {
 	my @s;
 	
 	for (my $i = 0 ; $i < $max ; $i ++) {
-		#warn scalar @s;
 		my $step = int $i / (44100 * $step_time);
 		if ($step == $current_step) { 
 			push @s, @buff && $buff[$offset] ? $buff[$offset] : 0;
