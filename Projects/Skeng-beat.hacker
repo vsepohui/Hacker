@@ -8,12 +8,14 @@ use Hacker::Effect::Transpose;
 my $kick = Hacker::Synth::Sampler->new(file => 'Samples/extra/kick_029.flac');
 my $hat  = Hacker::Synth::Sampler->new(file => 'Samples/extra/hat_003.flac');
 my $seq  = Hacker::Synth::Sequensor->new(sample => [$hat->signal(-24)], bpm => 120);
+my $seq2  = Hacker::Synth::Sequensor->new(sample => [$hat->signal(-36)], bpm => 120);
 
 my @c1 = ($kick->signal(-12), $kick->signal(-12), Hacker::Synth::Silence->signal(0, 1)) x 12;
 my @c2  = ($seq->signal('1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1')) x2;
+my @c3  = ($seq2->signal('1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1')) x2;
 
-my @c3 = Hacker::Effect::Transpose->new(value => -3)->process(Hacker::Effect::Delay->new(original_level => 1)->process(@c2));
+my @c4 = Hacker::Effect::Transpose->new(value => -3)->process(Hacker::Effect::Delay->new(original_level => 1)->process(@c2));
 
-my $mixer = new Hacker::Mixer(channels => [\@c1, \@c2, \@c3]);
+my $mixer = new Hacker::Mixer(channels => [\@c1, \@c2, \@c3, \@c4]);
 $mixer->master;
 
