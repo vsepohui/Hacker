@@ -1,6 +1,13 @@
+use Hacker::Mixer;
 use Hacker::Synth::Sampler;
 use Hacker::Synth::Silence;
 
-my $sampler = Hacker::Synth::Sampler->new(file => 'Samples/extra/kick_029.flac');
+my $kick = Hacker::Synth::Sampler->new(file => 'Samples/extra/kick_029.flac');
+my $hat  = Hacker::Synth::Sampler->new(file => 'Samples/extra/hat_003.flac');
 
-($sampler->signal(-12), $sampler->signal(-12), Hacker::Synth::Silence->signal(0, 1)) x 12;
+my @c1 = ($kick->signal(-12), $kick->signal(-12), Hacker::Synth::Silence->signal(0, 1)) x 12;
+my @c2 = ($hat->signal(-24)) x 12;
+
+my $mixer = new Hacker::Mixer(channels => [\@c1, \@c2]);
+$mixer->master;
+

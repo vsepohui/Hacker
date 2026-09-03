@@ -33,7 +33,7 @@ sub master {
 	for (my $i = 0 ; $i < $n ; $i ++) {
 		my $s = 0;
 		for (@{$self->{channels}}) {
-			$s += $_->[$i];
+			$s += $_->[$i] // 0;
 		}
 		push @master, $s;
 	}
