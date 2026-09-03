@@ -44,4 +44,12 @@ sub render {
 	$render->render(@signal);
 }
 
+sub pattern {
+	my $self   = shift;
+	my $code   = shift;
+	my $length = shift;
+	
+	return map {$code->($_)} 0..44100 * $length;
+}
+
 1;
