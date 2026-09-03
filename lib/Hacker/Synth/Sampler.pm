@@ -53,9 +53,11 @@ sub load_sample {
 sub signal {
 	my $self 		= ref $_[0] ? shift : new shift;
 	my $note 		= shift // 0;
-	my $length 		= shift // 1;
+	my $length 		= shift;
 	
-	return Hacker::Effect::Transpose->new(value => $note)->process(map{$self->generate($_)} 0 .. int 44100 * $length);
+	$length //= scalar @{$self->{sample}} - 1;
+	
+	return Hacker::Effect::Transpose->new(value => $note)->process(map{$self->generate($_)} 0 .. $length);
 }
 
 
