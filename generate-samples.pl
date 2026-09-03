@@ -12,12 +12,12 @@ use Hacker::Synth::Sin;
 use Hacker::Synth::Triangle;
 
 
-$h->render('Samples/sine.pcm' => Hacker::Synth::Sin->sig);
-$h->render('Samples/sun.pcm' => Hacker::Synth::Sun->sig);
-$h->render('Samples/saw.pcm' => Hacker::Synth::Saw->sig);
+$h->render('Samples/sine.pcm' => $h->sin);
+$h->render('Samples/sun.pcm' => $h->sun);
+$h->render('Samples/saw.pcm' => $h->saw);
 
-$h->render('Samples/sun-8bit.pcm' => map {int($h->sun($_ * 220 / $h->sample_rate)*3)/3} 0 .. $h->sample_rate * 5);
-$h->render('Samples/triangle.pcm' => Hacker::Synth::Triangle->sig);
+$h->render('Samples/sun-8bit.pcm' => map {int ($_*3) / 3.0} $h->sun);
+$h->render('Samples/triangle.pcm' => $h->triangle);
 
 
 1;

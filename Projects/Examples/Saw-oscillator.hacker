@@ -1,1 +1,1 @@
-Hacker::Synth::Saw->sig;
+$h->saw;

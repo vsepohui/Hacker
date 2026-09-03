@@ -143,25 +143,37 @@ sub pattern {
 # Accessor
 sub sun {
 	my $class  = shift;
-	return Hacker::Synth::Sun->generate(@_);
+	return Hacker::Synth::Sun->sig(@_);
+}
+
+# Accessor
+sub sin {
+	my $class  = shift;
+	return Hacker::Synth::Sin->sig(@_);
 }
 
 # Accessor
 sub saw {
 	my $class  = shift;
-	return Hacker::Synth::Saw->generate(@_);
+	return Hacker::Synth::Saw->sig(@_);
 }
 
 # Accessor
 sub triangle {
 	my $class  = shift;
-	return Hacker::Synth::Triangle->new(@_);
+	return Hacker::Synth::Triangle->sig(@_);
 }
 
 # Accessor
 sub sampler {
 	my $class = shift;
 	return Hacker::Synth::Sampler->new(@_);
+}
+
+# Accessor
+sub noise {
+	my $class  = shift;
+	return Hacker::Synth::Noise->sig(@_);
 }
 
 # Accessor
