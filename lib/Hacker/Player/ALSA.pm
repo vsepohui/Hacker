@@ -22,7 +22,7 @@ sub play {
 
 	# Let's play audio by aplay utility
 	my $rate = $self->sample_rate;
-	`aplay -f s16_le -r $rate -c 1 $filename`;
+	`aplay -q -f s16_le -r $rate -c 1 $filename`;
 
 	# Remove tmp PCM file
 	unlink $filename;
