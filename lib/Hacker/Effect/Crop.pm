@@ -7,15 +7,12 @@ use base 'Hacker::Effect';
 
 
 sub new {
-	my $class = shift;
-	my %opts  = (
-		length => undef,
-		@_,
-	);
+	my $class  = shift;
+	my $length = shift;
 	
-	die "Length is not specified" unless defined $opts{length};
+	die "Length is not specified" unless defined $length;
 	
-	return $class->SUPER::new(%opts);
+	return $class->SUPER::new(length => $length);
 }
 
 sub process {

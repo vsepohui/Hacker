@@ -61,7 +61,7 @@ sub render_pattern {
 			my $x = $steps[$step];
 			if ($x =~ /^-?\d+$/ || $x =~ /^\w\#?\d*$/) {
 				$offset = 0;
-				@buff = Hacker::Effect::Transpose->new(value => $self->parse_note($x))->process(@{$self->{sample}});
+				@buff = Hacker::Effect::Transpose->new($self->parse_note($x))->process(@{$self->{sample}});
 				push @s, $buff[$offset];
 			} elsif ($x eq '#') {
 				@buff = ();

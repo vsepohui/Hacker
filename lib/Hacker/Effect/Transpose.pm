@@ -8,12 +8,12 @@ use base 'Hacker::Effect';
 
 sub new {
 	my $class = shift;
-	my %opts  = (
-		value => 0,
-		@_,
-	);
+	my $value = shift;
+
+	use Carp;
+	confess $value unless $value =~ /^-?\d+$/;
 	
-	return $class->SUPER::new(%opts);
+	return $class->SUPER::new(value => $value);
 }
 
 sub process {

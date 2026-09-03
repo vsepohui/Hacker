@@ -1,5 +1,6 @@
+use Hacker;
 use Hacker::Synth::Sin;
-use Hacker::Mixer;
+
 
 my @seq = map {int rand(24)} 1..64;
 
@@ -10,5 +11,4 @@ for (@seq) {
 	push @c2, Hacker::Synth::Sin->signal($_+ 12, 0.5);
 }
 
-my $mixer = new Hacker::Mixer(channels => [\@c1, \@c2]);
-$mixer->master;
+Hacker->mixer(\@c1, \@c2)->master;

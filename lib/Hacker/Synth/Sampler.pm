@@ -9,12 +9,9 @@ use Hacker::Effect::Transpose;
 
 sub new {
 	my $class = shift;
-	my %opts  = (
-		file	=> undef,
-		@_,
-	);
+	my $file  = shift or die "Sample file is not specified";
 	
-	my $file = $opts{file} or die "Sample file is not specified";
+	
 	die "Sample file not found" unless -f $file;
 	
 	my $self = {
@@ -57,7 +54,7 @@ sub signal {
 	
 	$length //= scalar @{$self->{sample}} - 1;
 	
-	return Hacker::Effect::Transpose->new(value => $note)->process(map{$self->generate($_)} 0 .. $length);
+	return Hacker::Effect::Transpose->new($note)->process(map{$self->generate($_)} 0 .. $length);
 }
 
 

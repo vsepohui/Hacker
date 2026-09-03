@@ -20,7 +20,7 @@ sub note_rate {
 }
 
 sub signal {
-	my $self 		= ref $_[0] ? $_[0] : new shift;
+	my $self 		= ref $_[0] ? shift : new shift;
 	my $note 		= shift // 0;
 	my $length 		= shift // 5;
 	

@@ -1,5 +1,5 @@
-use Hacker::Synth::Sampler;
+use Hacker;
 
-my $sampler = Hacker::Synth::Sampler->new(file => './distr/Format.audio.JSON/distr/Ivan_Trunaev_-_Organ_Trio.mp3');
+my $sampler = Hacker->sampler('./distr/Format.audio.JSON/distr/Ivan_Trunaev_-_Organ_Trio.mp3');
 
 $sampler->signal(-12);

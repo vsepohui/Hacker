@@ -11,12 +11,11 @@ use Hacker::Effect::Normalize;
 
 sub new {
 	my $class = shift;
-	my %opts  = (
-		channels => [],
-		@_,
-	);
+	my @channels = @_;
 	
-	my $self = {%opts};
+	my $self = {
+		channels => \@channels,
+	};
 	
 	return bless $self, $class;
 }
