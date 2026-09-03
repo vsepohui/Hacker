@@ -5,7 +5,6 @@ use Hacker::Synth::Sequensor;
 use Hacker::Effect::Delay;
 use Hacker::Effect::Transpose;
 
-
 my $kick = Hacker::Synth::Sampler->new(file => 'Samples/extra/kick_029.flac');
 my $hat  = Hacker::Synth::Sampler->new(file => 'Samples/extra/hat_003.flac');
 my $seq  = Hacker::Synth::Sequensor->new(sample => [$hat->signal(-24)], bpm => 120);

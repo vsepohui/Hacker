@@ -26,8 +26,6 @@ sub play {
 	my $self   = shift;
 	my @signal = @_;
 	
-	use Carp;
-	confess '123';
 	...
 }
 
