@@ -7,17 +7,13 @@ BEGIN {use FindBin qw($Bin); require "$Bin/_init.pl";};
 
 use Hacker;
 
-use Getopt::Long qw(GetOptions);
+my $usage = "Usage:\n\t$0 [--out=...] [--help] perl-code-generator";
+my %args = Hacker->process_command_line(qw/out=s h|help/, $usage);
 
-my ($out, $help);
-GetOptions('out=s' => \$out, 'h|help' => \$help);
-usage() if $help || !$out;
-sub usage { say "Usage:\n\t$0 [--out=...] [--help] perl-code-generator" and exit(); }
-
-my $code = pop @ARGV or usage();
+my $code = pop @ARGV or die $usage;
 
 my @signal = eval $code; die "Error in eval code \"$code\"\n" if $@;
 
-Hacker->render($out => @signal);
+Hacker->render($args{out} => @signal);
 
 1;

@@ -7,17 +7,13 @@ BEGIN {use FindBin qw($Bin); require "$Bin/_init.pl";};
 
 use Hacker;
 
-use Getopt::Long qw(GetOptions);
+my $usage = "Usage:\n\t$0 [--driver=...] [--help] perl-code-generator";
+my %args = Hacker->process_command_line(qw/driver=s h|help/, $usage);
 
-my ($driver, $help);
-GetOptions('driver=s' => \$driver, 'h|help' => \$help);
-usage() if $help;
-sub usage { say "Usage:\n\t$0 [--driver=...] [--help] perl-code-generator" and exit(); }
-
-my $code = pop @ARGV or usage();
+my $code = pop @ARGV or die $usage;
 my @signal = eval $code;
 die "Error in eval code \"$code\"\n" if $@;
 
-Hacker->new(driver => $driver)->play(@signal);
+Hacker->new(driver => $args{driver})->play(@signal);
 
 1;

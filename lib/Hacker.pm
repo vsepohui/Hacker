@@ -3,6 +3,8 @@ package Hacker;
 use 5.022;
 use warnings;
 
+use Getopt::Long qw(GetOptions);
+
 use Hacker::Player;
 use Hacker::Render;
 use Hacker::Synth::Sun;
@@ -182,6 +184,26 @@ sub load_project {
 	my @signal = eval $project; die $@ if $@;
 	
 	return @signal;
+}
+
+sub process_command_line {
+	my $class = shift;
+	my $usage = pop;
+	my @opts  = @_;
+	
+	my $prepare = sub {
+		my $opt = shift;
+		$opt =~ s/\=s$//;
+		$opt =~ s/^\w\|(\w+)$/$1/;
+		return $opt;
+	};
+	
+	my %args = ();
+	GetOptions(map {$_ => \$args{$prepare->($_)}} @opts);
+	
+	say $usage and exit() if $args{help};
+	
+	return %args;
 }
 
 
