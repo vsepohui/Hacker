@@ -15,8 +15,8 @@ usage() if $help || !$out;
 sub usage { say "Usage:\n\t$0 [--out=...] [--help] perl-code-generator" and exit(); }
 
 my $code = pop @ARGV or usage();
-my @signal = eval $code;
-die "Error in eval code \"$code\"\n" if $@;
+
+my @signal = eval $code; die "Error in eval code \"$code\"\n" if $@;
 
 Hacker->render($out => @signal);
 

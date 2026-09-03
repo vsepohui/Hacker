@@ -11,20 +11,14 @@ use Hacker::Effect::Normalize;
 
 sub new {
 	my $class = shift;
-	
-	my $self = {
+	my %opts  = (
 		channels => [],
 		@_,
-	};
+	);
+	
+	my $self = {%opts};
 	
 	return bless $self, $class;
-}
-
-sub add_channel {
-	my $self   = shift;
-	my @signal = @_;
-	
-	push @{$self->{channels}}, \@signal;
 }
 
 sub master {
