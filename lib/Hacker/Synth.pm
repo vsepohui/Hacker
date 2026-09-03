@@ -6,8 +6,6 @@ use warnings;
 use base 'Hacker';
 
 
-
-
 sub new {
 	my $class = shift;
 	my $self = {};
