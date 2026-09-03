@@ -9,20 +9,17 @@ use base 'Hacker::Player';
 sub new {
 	my $class = shift;
 	my %opts  = (
-		sample_rate => $class->DEFAULT_SAMPLE_RATE(),
 		volume		=> $class->DEFAULT_VOLUME(),
 		filename	=> undef,
 		@_,
 	);
 	
-	my $sample_rate = $opts{sample_rate};
 	my $volume      = $opts{volume};
 	my $filename	= $opts{filename} or die "Filename is not specified";
 	
 	my $max_amplitude 	= 32767 * $volume;
 
 	return $class->SUPER::new(
-		sample_rate		=> $sample_rate,
 		volume			=> $volume,
 		max_amplitude 	=> $max_amplitude,
 		filename		=> $filename,

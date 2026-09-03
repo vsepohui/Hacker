@@ -12,18 +12,15 @@ use Audio::PortAudio;
 sub new {
 	my $class = shift;
 	my %opts  = (
-		sample_rate => $class->DEFAULT_SAMPLE_RATE(),
 		@_,
 	);
 	
-	my $sample_rate = $opts{sample_rate};
-
 	my $api = Audio::PortAudio::default_host_api();
 	my $device = $api->default_output_device;
 
 	my $stream = $device->open_write_stream(
 		{ channel_count => 1 },
-		$sample_rate,
+		$class->sample_rate,
 		400,
 		0
 	);
@@ -33,7 +30,6 @@ sub new {
 		api 		=> $api,
 		device		=> $device,
 		stream		=> $stream,
-		sample_rate	=> $sample_rate,
 	);
 }
 

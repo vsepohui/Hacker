@@ -9,13 +9,17 @@ use Hacker::Synth::Sun;
 use Hacker::Synth::Saw;
 use Hacker::Synth::Triangle;
 
-use Carp;
+use constant DEFAULT_SAMPLE_RATE => 44100;
+use constant DEFAULT_VOLUME      => 1;
+use constant DRIVERS			 => [qw/ProAudio Aplay/];
+use constant DEFAULT_DRIVER		 => 'ProAudio';
+
 
 
 sub new {
 	my $class = shift;
 	my %opts  = (
-		player_driver => Hacker::Player->DEFAULT_DRIVER(),
+		player_driver => Hacker->DEFAULT_DRIVER(),
 		@_,
 	);
 	
@@ -24,6 +28,11 @@ sub new {
 	};
 	
 	return bless $self, $class;	
+}
+
+sub sample_rate {
+	my $self = shift;
+	return $self->DEFAULT_SAMPLE_RATE;
 }
 
 sub player {
@@ -52,7 +61,7 @@ sub pattern {
 	my $code   = shift;
 	my $length = shift;
 	
-	return map {$code->($_)} 0..44100 * $length;
+	return map {$code->($_)} 0..$self->sample_rate * $length;
 }
 
 sub sun {

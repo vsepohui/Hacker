@@ -44,7 +44,7 @@ sub render_pattern {
 	my @steps = split /,/, $pattern;
 	
 	my $step_time = 60 / $self->{bpm};
-	my $max = $step_time * scalar (@steps) * 44100;
+	my $max = $step_time * scalar (@steps) * $self->sample_rate;
 	
 	my $next_step = 1;
 	my $current_step = -1;
@@ -53,7 +53,7 @@ sub render_pattern {
 	my @s;
 	
 	for (my $i = 0 ; $i < $max ; $i ++) {
-		my $step = int $i / (44100 * $step_time);
+		my $step = int $i / ($self->sample_rate * $step_time);
 		if ($step == $current_step) { 
 			push @s, @buff && $buff[$offset] ? $buff[$offset] : 0;
 		} else {

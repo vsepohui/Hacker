@@ -3,6 +3,8 @@ package Hacker::Effect;
 use 5.022;
 use warnings;
 
+use base 'Hacker';
+
 
 sub new {
 	my $class = shift;

@@ -3,7 +3,10 @@ package Hacker::Mixer;
 use 5.022;
 use warnings;
 
+use base 'Hacker';
+
 use Hacker::Effect::Normalize;
+
 
 
 sub new {

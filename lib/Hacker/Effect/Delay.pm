@@ -27,7 +27,7 @@ sub process {
 	
 	my @copy = @s;
 	
-	my $rate = 44100;
+	my $rate = $self->sample_rate;
 	my $step = int $self->{time} * $rate;
 	
 	my $n = scalar @s;
