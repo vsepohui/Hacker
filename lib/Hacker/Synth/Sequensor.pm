@@ -8,15 +8,9 @@ use base 'Hacker::Synth';
 use Hacker::Effect::Transpose;
 
 sub new {
-	my $class = shift;
-	my %opts = (
-		sample => undef,
-		bpm    => 120,
-		@_,
-	);
-
-	my $sample 	= $opts{sample} or die "Sample is not specified";
-	my $bpm 	= $opts{bpm} or die "BPM is not specified";
+	my $class  = shift;
+	my $sample = shift or die "Sample is not specified";
+	my $bpm    = shift // 120;
 		
 	my $self = {
 		sample	=> $sample,

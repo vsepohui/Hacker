@@ -177,8 +177,8 @@ sub seq {
 # Accessor
 sub sequenser {
 	my $pattern = pop;
-	my %args    = @_;
-	return Hacker::Synth::Sequensor->new(%args)->sig($pattern);
+	my @opts    = @_;
+	return Hacker::Synth::Sequensor->new(@opts)->sig($pattern);
 }
 
 # Accessor
