@@ -1,0 +1,3 @@
+use Hacker::Synth::Noise;
+
+Hacker::Synth::Noise->signal;
