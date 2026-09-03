@@ -20,6 +20,6 @@ my $code = pop @ARGV or usage();
 my @signal = eval $code;
 die "Error in eval code \"$code\"\n" if $@;
 
-Hacker->play(driver => $driver, signal => \@signal);
+Hacker->new(player_driver => $driver)->play(@signal);
 
 1;

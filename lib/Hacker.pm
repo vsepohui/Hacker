@@ -8,33 +8,28 @@ use Hacker::Player;
 
 sub new {
 	my $class = shift;
+	my %opts  = (
+		player_driver => Hacker::Player->DEFAULT_DRIVER(),
+		@_,
+	);
 	
-	my $self = {};
+	my $self = {
+		player_driver => $opts{player_driver},
+	};
 	
 	return bless $self, $class;	
 }
 
 sub player {
 	my $self 	= shift;
-	my $driver 	= shift // Hacker::Player->DEFAULT_DRIVER();
-	
-	return Hacker::Player->init($driver);
+	return Hacker::Player->init($self->{player_driver});
 }
 
 sub play {
-	my $self = shift;
-	my %opts = (
-		signal => undef,
-		driver => undef,
-		@_,
-	);
+	my $self	= shift;
+	my @signal	= @_;
 	
-	my $signal 	= $opts{signal};
-	my $driver 	= $opts{driver};
-	
-	die "No signal\n" unless $signal && @$signal;
-
-	$self->player($driver)->play(@$signal);
+	$self->player()->play(@signal);
 }
 
 1;
