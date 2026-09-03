@@ -1,0 +1,69 @@
+package Hacker::Synth::Sampler;
+
+use 5.022;
+use warnings;
+
+use base 'Hacker::Synth';
+
+
+sub new {
+	my $class = shift;
+	my %opts  = (
+		file	=> undef,
+		@_,
+	);
+	
+	my $file = $opts{file} or die "Sample file is not specified";
+	die "Sample file not found" unless -f $file;
+	
+	my $self = {
+		file 	=> $file,
+	};
+	
+	$self = bless $self, $class;
+	
+	$self->load_sample();
+	
+	return $self;
+}
+
+sub load_sample {
+	my $self = shift;
+	my $file = $self->{file};
+
+	my $out = `ffmpeg -loglevel quiet -i $file -f s16le -acodec pcm_s16le pipe:1`;
+
+	my @chunks = unpack("(a4)*", $out);
+
+	my @s;
+	my $max = 32767;	
+	for (@chunks) {
+		my $s;
+
+		my ($left, $right) = unpack('s<s<', $_);
+		$s = $left;
+		
+		push @s, $s / $max;
+	}
+
+	$self->{sample} = \@s;
+}
+
+sub signal {
+	my $self 		= ref $_[0] ? shift : new shift;
+	my $note 		= shift // 0;
+	my $length 		= shift // 1;
+	
+	return map{$self->generate($_)} 0 .. int 44100 * $length;
+}
+
+
+
+sub generate {
+	my $self   = shift;
+	my $offset = shift;
+	
+	return $self->{sample}->[$offset];
+}
+
+1;
