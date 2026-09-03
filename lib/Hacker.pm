@@ -24,9 +24,7 @@ sub new {
 		@_,
 	);
 	
-	my $self = {
-		driver => $opts{driver},
-	};
+	my $self = {%opts};
 	
 	return bless $self, $class;	
 }
