@@ -5,6 +5,7 @@ use warnings;
 
 use base 'Hacker::Synth';
 
+use Hacker::Effect::Transpose;
 
 sub new {
 	my $class = shift;
@@ -54,7 +55,7 @@ sub signal {
 	my $note 		= shift // 0;
 	my $length 		= shift // 1;
 	
-	return map{$self->generate($_)} 0 .. int 44100 * $length;
+	return Hacker::Effect::Transpose->new(value => $note)->process(map{$self->generate($_)} 0 .. int 44100 * $length);
 }
 
 

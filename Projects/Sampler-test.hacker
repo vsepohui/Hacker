@@ -2,4 +2,4 @@ use Hacker::Synth::Sampler;
 
 my $sampler = Hacker::Synth::Sampler->new(file => './distr/Format.audio.JSON/distr/Piece.mp3');
 
-$sampler->signal(0, 1);
+$sampler->signal(-12, 1);
