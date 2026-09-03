@@ -1,4 +1,4 @@
-package Hacker::Player::Aplay;
+package Hacker::Player::ALSA;
 
 use 5.022;
 use warnings;

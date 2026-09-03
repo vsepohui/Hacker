@@ -9,7 +9,6 @@ use base 'Hacker';
 sub new {
 	my $class = shift;
 	my %opts  = (
-		volume => $class->DEFAULT_VOLUME(),
 		@_,
 	);
 	
