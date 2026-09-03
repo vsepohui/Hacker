@@ -15,7 +15,8 @@ die "No project file $file" unless -f $file;
 
 my $hacker = new Hacker(driver => $args{driver});
 
-my @signal = $hacker->load_project($file);
+my @signal = load($file);
+
 if (my $file = $args{render}) {
 	$hacker->render($file => @signal);
 	exit;

@@ -4,7 +4,7 @@ use 5.022;
 use warnings;
 
 use Exporter qw(import);
-our @EXPORT = qw(sampler seq sequenser mix mixer rev crop silence transpose delay noise process_command_line triangle sine sun saw);
+our @EXPORT = qw(sampler seq sequenser mix mixer rev crop silence transpose delay noise process_command_line triangle sine sun saw load);
 
 use Getopt::Long qw(GetOptions);
 
@@ -25,6 +25,7 @@ use Hacker::Effect::Delay;
 use Hacker::Effect::Crop;
 
 use Hacker::Config;
+use Hacker::Project;
 
 use Carp;
 
@@ -225,27 +226,10 @@ sub delay {
 	Hacker::Effect::Delay->new(%params)->process(@$signal);
 }
 
-# Load ./hacker.pl Project from a file and preping, executing
-sub load_project {
-	my $self = shift;
+# Accessor
+sub load {
 	my $file = shift;
-	
-	my $project;
-	
-	# Load file
-	my $fi;
-	open $fi, $file;
-	$project = join '', <$fi>;
-	close $fi;
-	
-	# Adding header
-	$project = q[use Hacker;] . $project;
-
-	# Execute
-	my @signal = eval $project; die $@ if $@;
-	
-	# Return Project result
-	return @signal;
+	Hacker::Project->new()->load_project($file);
 }
 
 # Usefull util for parsing command-line
