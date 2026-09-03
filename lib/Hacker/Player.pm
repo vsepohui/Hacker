@@ -6,6 +6,7 @@ use warnings;
 use constant DEFAULT_SAMPLE_RATE => 44100;
 use constant DEFAULT_VOLUME      => 1.0;
 use constant DRIVERS			 => [qw/ProAudio Aplay/];
+use constant DEFAULT_DRIVER		 => 'ProAudio';
 
 
 sub new {

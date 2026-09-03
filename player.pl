@@ -7,19 +7,19 @@ use lib 'lib';
 
 use Getopt::Long qw(GetOptions);
 
-use Hacker::Player;
+use Hacker;
 
-my $driver = 'ProAudio';
-my $help   = 0;
+my ($driver, $help);
 
 GetOptions('driver=s' => \$driver, 'h|help' => \$help);
 usage() if $help;
-
 sub usage { say "Usage:\n\t$0 [--driver=...] [--help] perl-code-generator" and exit(); }
 
-my $player = Hacker::Player->init($driver);
 my $code = pop @ARGV or usage();
 
-$player->play(eval $code);
+my @signal = eval $code;
+die "Error in eval code \"$code\"\n" if $@;
+
+Hacker->play(driver => $driver, signal => \@signal);
 
 1;
