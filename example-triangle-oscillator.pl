@@ -7,7 +7,7 @@ use lib 'lib';
 
 use Hacker;
 
-Hacker->play(map {Hacker->triangle($_ * 300 / 44100.0)} 0 .. 44100 * 5);
+Hacker->play(map {Hacker->triangle($_ * 220 / 44100.0)} 0 .. 44100 * 5);
 
 
 

@@ -12,4 +12,7 @@ Hacker->render('samples/sun.pcm' => map {Hacker->sun($_ * 330 / 44100.0)} 0 .. 4
 Hacker->render('samples/saw.pcm' => map {Hacker->saw($_ * 110 / 44100.0)} 0 .. 44100 * 5);
 
 Hacker->render('samples/sun-8bit.pcm' => map {int(Hacker->sun($_ * 220 / 44100.0)*3)/3} 0 .. 44100 * 5);
+Hacker->render('samples/triangle.pcm' => map {Hacker->triangle($_ * 220 / 44100.0)} 0 .. 44100 * 5);
+
+
 1;
