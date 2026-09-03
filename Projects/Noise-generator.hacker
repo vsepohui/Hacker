@@ -1,3 +1,1 @@
-use Hacker::Synth::Noise;
-
-Hacker::Synth::Noise->signal;
+Hacker::Synth::Noise->sig;

@@ -17,6 +17,13 @@ sub new {
 	return bless $self, $class;
 }
 
+# Acessor
+sub proc {
+	my $self = ref $_[0] ? shift : new shift;
+	$self->process(@_);
+}
+
+# Process signal
 sub process {
 	my $self = ref $_[0] ? shift : new shift;
 	my @s = shift;

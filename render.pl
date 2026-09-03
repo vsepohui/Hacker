@@ -5,7 +5,7 @@ use warnings;
 
 BEGIN {use FindBin qw($Bin); require "$Bin/_init.pl";};
 
-use Hacker qw($h);
+use Hacker;
 
 my $usage = "Usage:\n\t$0 [--out=...] [--help] perl-code-generator";
 my %args = $h->process_command_line(qw/out=s h|help/, $usage);

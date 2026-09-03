@@ -19,16 +19,27 @@ sub note_rate {
 	return Hacker->config->{NOTES_FREQUES}->[$note + 51];
 }
 
+# Accessor
+sub sig {
+	my $self = ref $_[0] ? shift : new shift;
+	return $self->signal(@_);
+}
+
 sub signal {
-	my $self 		= ref $_[0] ? shift : new shift;
-	my $note 		= shift // 0;
-	my $length 		= shift // 5;
+	my $self 	= ref $_[0] ? shift : new shift;
+	my $note 	= shift // 0;
+	my $length	= shift // 5;
 	
 	my $modulation = $self->note_rate($self->parse_note($note)) / $self->sample_rate;
 	
 	return $self->pattern(sub{$self->generate($_ * $modulation)} => $length);
 }
 
+# Accessor
+sub gen {
+	my $self = ref $_[0] ? shift : new shift;
+	return $self->generate(@_);
+}
 
 sub generate {
 	...

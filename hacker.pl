@@ -5,7 +5,7 @@ use warnings;
 
 BEGIN {use FindBin qw($Bin); require "$Bin/_init.pl";};
 
-use Hacker qw($h);
+use Hacker;
 
 my $usage = "Usage:\n\t$0 [--driver=...] [--help] [--play] [--render=...] project-file.hacker";
 my %args = $h->process_command_line(qw/driver=s play render=s h|help/, $usage);

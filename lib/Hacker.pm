@@ -4,7 +4,7 @@ use 5.022;
 use warnings;
 
 use Exporter qw(import);
-our @EXPORT_OK = qw($h);
+our @EXPORT = qw($h);
 our $h = new Hacker;
 
 use Getopt::Long qw(GetOptions);
@@ -13,9 +13,11 @@ use Hacker::Player;
 use Hacker::Render;
 use Hacker::Synth::Sun;
 use Hacker::Synth::Saw;
+use Hacker::Synth::Sin;
 use Hacker::Synth::Triangle;
 use Hacker::Synth::Sampler;
 use Hacker::Synth::Sequensor;
+use Hacker::Synth::Noise;
 use Hacker::Synth::Silence;
 use Hacker::Mixer;
 use Hacker::Effect::Transpose;
@@ -144,6 +146,12 @@ sub sampler {
 	return Hacker::Synth::Sampler->new(@_);
 }
 
+# Accessor
+sub seq {
+	my $class = shift;
+	return $class->sequenser(@_);
+}
+
 sub sequenser {
 	my $class = shift;
 	return Hacker::Synth::Sequensor->new(@_);
@@ -200,7 +208,7 @@ sub load_project {
 	$project = join '', <$fi>;
 	close $fi;
 	
-	$project = q[use Hacker qw($h);] . $project;
+	$project = q[use Hacker;] . $project;
 
 	my @signal = eval $project; die $@ if $@;
 	

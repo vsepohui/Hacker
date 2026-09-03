@@ -1,3 +1,1 @@
-use Hacker::Synth::Triangle;
-
-Hacker::Synth::Triangle->signal;
+Hacker::Synth::Triangle->sig;

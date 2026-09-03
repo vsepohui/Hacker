@@ -1,3 +1,1 @@
-use Hacker::Synth::Sun;
-
-Hacker::Synth::Sun->signal;
+Hacker::Synth::Sun->sig;

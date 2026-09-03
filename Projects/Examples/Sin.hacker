@@ -1,2 +1,1 @@
-use Hacker::Synth::Sin;
-Hacker::Synth::Sin->signal;
+Hacker::Synth::Sin->sig;

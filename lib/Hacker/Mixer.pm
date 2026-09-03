@@ -20,6 +20,12 @@ sub new {
 	return bless $self, $class;
 }
 
+# Accessor
+sub mix {
+	my $self = shift;
+	return $self->master;
+}
+
 sub master {
 	my $self = shift;
 	
