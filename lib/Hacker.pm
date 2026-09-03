@@ -66,7 +66,8 @@ sub sample_rate {
 
 sub player {
 	my $self = shift;
-	return Hacker::Player->init($self->{driver});
+	state $player = Hacker::Player->init($self->{driver});
+	return $player;
 }
 
 sub play {
