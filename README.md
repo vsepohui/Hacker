@@ -9,3 +9,11 @@ Release just for demosceners and professional sound engeeners.
 git submodule update --init --recursive
 sudo cpan install Audio::PortAudio
 ```
+
+# Usage examples:
+
+
+## One-line code-player for a fans!
+```
+./player.pl 'map{sin($_*880*3.1415/44100)} 0..44100*5'
+```
