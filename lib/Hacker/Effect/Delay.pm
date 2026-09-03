@@ -11,9 +11,9 @@ use Hacker::Effect::Normalize;
 sub new {
 	my $class = shift;
 	my %opts  = (
-		time 			=> 0.3,
-		level			=> 0.5,
-		original_level 	=> 1,
+		time 			=> 0.3, # Delay time
+		level			=> 0.5, # Mix level
+		original_level 	=> 1,   # Original audio stream level
 		#feedback 	=> 0.5,
 		@_,
 	);
