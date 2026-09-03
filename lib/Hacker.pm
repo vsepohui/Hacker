@@ -3,6 +3,7 @@ package Hacker;
 use 5.022;
 use warnings;
 
+# Hack from provideng access to Hacker shorted, super-accessor, singleton
 use Exporter qw(import);
 our @EXPORT = qw($h);
 our $h = new Hacker;
@@ -30,6 +31,7 @@ use Hacker::Config;
 use Carp;
 
 
+# Constructor
 sub new {
 	my $class = shift;
 	my %opts  = (
@@ -37,57 +39,66 @@ sub new {
 		@_,
 	);
 	
-	my $self = {
-		%opts,
-		config => new Hacker::Config,
-	};
-	
+	my $self = {%opts};
 	return bless $self, $class;	
 }
 
+# Config accessor
 sub config {
-	my $class = shift;
 	return new Hacker::Config;
 }
 
+# Note parsing, getting integer and string note return number of note
 sub parse_note {
 	my $self = shift;
 	my $note = shift;
+	
+	# May this is integer note?
 	return $note if $note =~ /^-?\d+$/;
 	
-	state %notes = ();
-
+	
 	my $notes = $self->config->{NOTES};
 	my $n = scalar @$notes;
-	
-	unless (%notes) {	
+
+	# Cache
+	state %notes = ();	
+	# Init state %notes cache value
+	unless (%notes) {
 		for (my $i = 0 ; $i < $n ; $i ++) {
 			$notes{$notes->[$i]} = $i;
 		}
 	}
 	
+	# Default octave
 	my $octave = 4;
 	
+	# Parse string note
 	if ($note =~ /^(\w\#?)(\d*)$/) {
 		$note   = uc $1;
 		$octave = $2;
 	}
 	
+	# Validation note
 	confess "Wrong note: $note" unless exists $notes{$note};
 	
+	# Return note value
 	return $notes{$note} + $n * ($octave - 4);
 }
 
+# Accessor to config
 sub sample_rate {
 	my $self = shift;
 	return $self->config->{DEFAULT_SAMPLE_RATE};
 }
 
+# Accessor to Hacker object driver param
 sub driver {
 	my $self = shift;
 	my $driver = shift;
 	
+	# If gettet, setup new value
 	if ($driver) {
+		# Validate value by config
 		confess "Wrong driver \"$driver\"" unless ($driver ~~ $self->config->{DRIVERS});
 		$self->{driver} = $driver;
 	}
@@ -95,19 +106,22 @@ sub driver {
 	return $self->{driver};
 }
 
+# Player accessor
 sub player {
 	my $self = shift;
+	# Init state player
 	state $player = Hacker::Player->init($self->{driver});
 	return $player;
 }
 
+# Accessor
 sub play {
 	my $self = ref $_[0] ? shift : new shift;
 	my @signal	= @_;
-	
 	$self->player()->play(@signal);
 }
 
+# Accessor
 sub render {
 	my $self = ref $_[0] ? shift : new shift;
 	my $filename = shift;
@@ -117,6 +131,7 @@ sub render {
 	$render->render(@signal);
 }
 
+# Usefull tool for a hackers
 sub pattern {
 	my $self   = shift;
 	my $code   = shift;
@@ -125,22 +140,25 @@ sub pattern {
 	return map {$code->($_)} 0..$self->sample_rate * $length;
 }
 
+# Accessor
 sub sun {
 	my $class  = shift;
 	return Hacker::Synth::Sun->generate(@_);
 }
 
+# Accessor
 sub saw {
 	my $class  = shift;
 	return Hacker::Synth::Saw->generate(@_);
 }
 
-
+# Accessor
 sub triangle {
 	my $class  = shift;
 	return Hacker::Synth::Triangle->new(@_);
 }
 
+# Accessor
 sub sampler {
 	my $class = shift;
 	return Hacker::Synth::Sampler->new(@_);
@@ -152,16 +170,19 @@ sub seq {
 	return $class->sequenser(@_);
 }
 
+# Accessor
 sub sequenser {
 	my $class = shift;
 	return Hacker::Synth::Sequensor->new(@_);
 }
 
+# Accessor
 sub mixer {
 	my $class = shift;
 	return Hacker::Mixer->new(@_);
 }
 
+# Accessor
 sub silence {
 	my $class = shift;
 	my $length = shift;
@@ -169,6 +190,7 @@ sub silence {
 	return Hacker::Synth::Silence->signal(0, $length);
 }
 
+# Accessor
 sub transpose {
 	my $class  = shift;
 	my $signal = shift;
@@ -176,11 +198,13 @@ sub transpose {
 	return Hacker::Effect::Transpose->new($value)->process(@$signal);
 }
 
+# Accessor
 sub reverse {
 	my $class = shift;
 	return Hacker::Effect::Reverse->new()->process(@_);
 }
 
+# Accessor
 sub crop {
 	my $class  = shift;
 	my $signal = shift;
@@ -189,6 +213,7 @@ sub crop {
 	return Hacker::Effect::Crop->new($length)->process(@$signal);
 }
 
+# Accessor
 sub delay {
 	my $class  = shift;
 	my $signal = shift;
@@ -197,29 +222,36 @@ sub delay {
 	Hacker::Effect::Delay->new(%params)->process(@$signal);
 }
 
+# Load ./hacker.pl Project from a file and preping, executing
 sub load_project {
 	my $self = shift;
 	my $file = shift;
 	
 	my $project;
-
+	
+	# Load file
 	my $fi;
 	open $fi, $file;
 	$project = join '', <$fi>;
 	close $fi;
 	
+	# Adding header
 	$project = q[use Hacker;] . $project;
 
+	# Execute
 	my @signal = eval $project; die $@ if $@;
 	
+	# Return Project result
 	return @signal;
 }
 
+# Usefull util for parsing command-line
 sub process_command_line {
 	my $class = shift;
-	my $usage = pop;
-	my @opts  = @_;
+	my $usage = pop; # Get last param, it's Usage text
+	my @opts  = @_;  # Get params
 	
+	# Prepare from GetOptions syntax option to key-names
 	my $prepare = sub {
 		my $opt = shift;
 		$opt =~ s/\=s$//;
@@ -230,6 +262,7 @@ sub process_command_line {
 	my %args = ();
 	GetOptions(map {$_ => \$args{$prepare->($_)}} @opts);
 	
+	# Show usage, it catchet --help command-line param
 	say $usage and exit() if $args{help};
 	
 	return %args;

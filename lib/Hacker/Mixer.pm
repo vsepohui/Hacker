@@ -26,6 +26,7 @@ sub mix {
 	return $self->master;
 }
 
+# Join channels
 sub master {
 	my $self = shift;
 	
@@ -39,7 +40,8 @@ sub master {
 		}
 		push @master, $s;
 	}
-
+	
+	# Limit possible overload of signal
 	return Hacker::Effect::Normalize->process(@master);
 }
 

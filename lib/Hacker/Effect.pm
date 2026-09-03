@@ -13,7 +13,6 @@ sub new {
 	);
 	
 	my $self = {%opts};
-	
 	return bless $self, $class;
 }
 
