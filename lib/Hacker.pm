@@ -189,9 +189,15 @@ sub sequenser {
 }
 
 # Accessor
+sub mix {
+	my $class = shift;
+	return $class->mixer(@_);
+}
+
+# Accessor
 sub mixer {
 	my $class = shift;
-	return Hacker::Mixer->new(@_);
+	return Hacker::Mixer->new(@_)->mix;
 }
 
 # Accessor

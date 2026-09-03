@@ -4,4 +4,4 @@ for (map {int rand(24)} 1..64) {
 	push @c2, $h->sin($_+ 12, 0.5);
 }
 
-$h->mixer(\@c1, \@c2)->mix;
+$h->mix(\@c1, \@c2)
