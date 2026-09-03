@@ -29,6 +29,7 @@ my @signal = eval $proj;
 die $@ if $@;
 
 my $hacker = new Hacker(driver => $driver);
+
 unless ($render) {
 	$hacker->play(@signal);
 } else {

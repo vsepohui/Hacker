@@ -52,7 +52,7 @@ sub load_sample {
 
 sub signal {
 	my $self 		= ref $_[0] ? shift : new shift;
-	my $note 		= shift // 0;
+	my $note 		= $self->parse_note(shift // 0);
 	my $length 		= shift;
 	
 	$length //= scalar @{$self->{sample}} - 1;
