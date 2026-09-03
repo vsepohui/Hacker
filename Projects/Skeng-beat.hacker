@@ -5,10 +5,11 @@ use Hacker::Synth::Sequensor;
 use Hacker::Effect::Delay;
 use Hacker::Effect::Transpose;
 use Hacker::Effect::Reverse;
+use Hacker::Effect::Crop;
 
 my $kick = Hacker::Synth::Sampler->new(file => 'Samples/extra/kick_029.flac');
 my $hat  = Hacker::Synth::Sampler->new(file => 'Samples/extra/hat_003.flac');
-my $seq  = Hacker::Synth::Sequensor->new(sample => [Hacker::Effect::Reverse->new()->process($hat->signal(-24))], bpm => 120);
+my $seq  = Hacker::Synth::Sequensor->new(sample => [Hacker::Effect::Reverse->new()->process(Hacker::Effect::Crop->new(length=>'0.1')->process($hat->signal(-24)))], bpm => 120);
 my $seq2  = Hacker::Synth::Sequensor->new(sample => [Hacker::Effect::Reverse->new()->process($hat->signal(-36))], bpm => 120);
 
 my @c1 = ($kick->signal(-12), $kick->signal(-12), Hacker::Synth::Silence->signal(0, 1)) x 12;
