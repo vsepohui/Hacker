@@ -1,0 +1,6 @@
+use Hacker::Synth::Sampler;
+use Hacker::Synth::Silence;
+
+my $sampler = Hacker::Synth::Sampler->new(file => 'Samples/extra/kick_029.flac');
+
+($sampler->signal(-12), $sampler->signal(-12), Hacker::Synth::Silence->signal(0, 1)) x 12;
