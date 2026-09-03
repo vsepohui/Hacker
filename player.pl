@@ -8,13 +8,13 @@ BEGIN {use FindBin qw($Bin); require "$Bin/_init.pl";};
 use Hacker;
 
 my $usage = "Usage:\n\t$0 [--driver=...] [--help] perl-code-generator";
-my %args = $h->process_command_line(qw/driver=s h|help/, $usage);
+my %args = process_command_line(qw/driver=s h|help/, $usage);
 
 my $code = pop @ARGV or die $usage;
 my @signal = eval $code;
 die "Error in eval code \"$code\"\n" if $@;
 
-$h->driver($args{driver});
-$h->play(@signal);
+my $hacker = new Hacker(driver => $args{driver});
+$hacker->play(@signal);
 
 1;

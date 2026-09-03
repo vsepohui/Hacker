@@ -3,10 +3,8 @@ package Hacker;
 use 5.022;
 use warnings;
 
-# Hack from provideng access to Hacker shorted, super-accessor, singleton
 use Exporter qw(import);
-our @EXPORT = qw($h);
-our $h = new Hacker;
+our @EXPORT = qw(sampler seq sequenser mix mixer rev crop silence transpose delay noise process_command_line triangle sine sun saw);
 
 use Getopt::Long qw(GetOptions);
 
@@ -124,6 +122,7 @@ sub play {
 # Accessor
 sub render {
 	my $self = ref $_[0] ? shift : new shift;
+	
 	my $filename = shift;
 	my @signal   = @_;
 	
@@ -142,98 +141,82 @@ sub pattern {
 
 # Accessor
 sub sun {
-	my $class  = shift;
 	return Hacker::Synth::Sun->sig(@_);
 }
 
 # Accessor
-sub sin {
-	my $class  = shift;
+sub sine {
 	return Hacker::Synth::Sin->sig(@_);
 }
 
 # Accessor
 sub saw {
-	my $class  = shift;
 	return Hacker::Synth::Saw->sig(@_);
 }
 
 # Accessor
 sub triangle {
-	my $class  = shift;
 	return Hacker::Synth::Triangle->sig(@_);
 }
 
 # Accessor
 sub sampler {
-	my $class = shift;
 	return Hacker::Synth::Sampler->new(@_);
 }
 
 # Accessor
 sub noise {
-	my $class  = shift;
 	return Hacker::Synth::Noise->sig(@_);
 }
 
 # Accessor
 sub seq {
-	my $class = shift;
-	return $class->sequenser(@_);
+	return sequenser(@_);
 }
 
 # Accessor
 sub sequenser {
-	my $class = shift;
 	return Hacker::Synth::Sequensor->new(@_);
 }
 
 # Accessor
 sub mix {
-	my $class = shift;
-	return $class->mixer(@_);
+	return mixer(@_);
 }
 
 # Accessor
 sub mixer {
-	my $class = shift;
 	return Hacker::Mixer->new(@_)->mix;
 }
 
 # Accessor
 sub silence {
-	my $class = shift;
 	my $length = shift;
-	
 	return Hacker::Synth::Silence->signal(0, $length);
 }
 
 # Accessor
 sub transpose {
-	my $class  = shift;
 	my $signal = shift;
 	my $value  = shift;
 	return Hacker::Effect::Transpose->new($value)->process(@$signal);
 }
 
 # Accessor
-sub reverse {
-	my $class = shift;
+sub rev {
 	return Hacker::Effect::Reverse->new()->process(@_);
 }
 
 # Accessor
 sub crop {
-	my $class  = shift;
 	my $signal = shift;
 	my $length = shift;
-	
+
 	return Hacker::Effect::Crop->new($length)->process(@$signal);
 }
 
 # Accessor
 sub delay {
-	my $class  = shift;
 	my $signal = shift;
 	my %params = @_;
 	
@@ -265,7 +248,6 @@ sub load_project {
 
 # Usefull util for parsing command-line
 sub process_command_line {
-	my $class = shift;
 	my $usage = pop; # Get last param, it's Usage text
 	my @opts  = @_;  # Get params
 	

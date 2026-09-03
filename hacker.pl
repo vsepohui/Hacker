@@ -8,19 +8,19 @@ BEGIN {use FindBin qw($Bin); require "$Bin/_init.pl";};
 use Hacker;
 
 my $usage = "Usage:\n\t$0 [--driver=...] [--help] [--play] [--render=...] project-file.hacker";
-my %args = $h->process_command_line(qw/driver=s play render=s h|help/, $usage);
+my %args = process_command_line(qw/driver=s play render=s h|help/, $usage);
 
 my $file = pop @ARGV or die $usage;
 die "No project file $file" unless -f $file;
 
-$h->driver($args{driver});
+my $hacker = new Hacker(driver => $args{driver});
 
-my @signal = $h->load_project($file);
+my @signal = $hacker->load_project($file);
 if (my $file = $args{render}) {
-	$h->render($file => @signal);
+	$hacker->render($file => @signal);
 	exit;
 }
 
-$h->play(@signal);
+$hacker->play(@signal);
 
 1;
