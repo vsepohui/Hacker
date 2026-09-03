@@ -1,1 +1,1 @@
-sampler('./distr/Format.audio.JSON/distr/Ivan_Trunaev_-_Organ_Trio.mp3')->sig(-12);
+sampler('./distr/Format.audio.JSON/distr/Ivan_Trunaev_-_Organ_Trio.mp3')->play(-12);

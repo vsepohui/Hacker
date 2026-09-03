@@ -25,6 +25,12 @@ sub sig {
 	return $self->signal(@_);
 }
 
+# Accessor
+sub play {
+	my $self = ref $_[0] ? shift : new shift;
+	return $self->sig(@_);
+}
+
 sub signal {
 	my $self 	= ref $_[0] ? shift : new shift;
 	my $note 	= shift // 0;
