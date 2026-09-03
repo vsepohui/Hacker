@@ -16,7 +16,7 @@ sub note_rate {
 	my $self = shift;
 	my $note = shift;
 	
-	return $self->NOTES_FREQUES->[$note + 51];
+	return Hacker->config->{NOTES_FREQUES}->[$note + 51];
 }
 
 sub signal {

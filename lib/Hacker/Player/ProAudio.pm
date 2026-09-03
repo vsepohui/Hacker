@@ -36,7 +36,7 @@ sub play {
 	my $self   = shift;
 	my @signal = @_;
 	
-	my $wave = pack "f*", map {$self->limiter($_)} map {$_ * $self->DEFAULT_VOLUME} @signal;
+	my $wave = pack "f*", map {$self->limiter($_)} map {$_ * Hacker->config->{DEFAULT_VOLUME}} @signal;
 	$self->{stream}->write($wave);
 }
 

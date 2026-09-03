@@ -32,12 +32,12 @@ sub play {
 
 sub drivers {
 	my $class = shift;
-	return $class->DRIVERS();
+	return Hacker->config->{DRIVERS};
 }
 
 sub init {
 	my $class  = shift;
-	my $driver = shift // $class->DEFAULT_DRIVER;
+	my $driver = shift // Hacker->config->{DEFAULT_DRIVER};
 	
 	die "Wrond driver \"$driver\"" unless $driver ~~ $class->drivers();
 

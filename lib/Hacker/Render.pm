@@ -9,7 +9,7 @@ use base 'Hacker::Player';
 sub new {
 	my $class = shift;
 	my %opts  = (
-		volume		=> $class->DEFAULT_VOLUME(),
+		volume		=> Hacker->config->{DEFAULT_VOLUME},
 		filename	=> undef,
 		@_,
 	);
