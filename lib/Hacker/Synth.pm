@@ -25,7 +25,7 @@ sub signal {
 	
 	my $modulation = $self->note_rate($note) / 44100.0;
 	
-	return map{$self->generate($_ * $modulation)} 0 .. 44100 * $length;
+	return map{$self->generate($_ * $modulation)} 0 .. int 44100 * $length;
 }
 
 
