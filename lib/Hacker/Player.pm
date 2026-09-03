@@ -25,6 +25,9 @@ sub new {
 sub play {
 	my $self   = shift;
 	my @signal = @_;
+	
+	use Carp;
+	confess '123';
 	...
 }
 
@@ -34,14 +37,14 @@ sub drivers {
 }
 
 sub init {
-	my $class   = shift;
-	my $driver = shift or die "Driver is not specified";
+	my $class  = shift;
+	my $driver = shift // $class->DEFAULT_DRIVER;
 	
 	die "Wrond driver \"$driver\"" unless $driver ~~ $class->drivers();
 
 	my $c = $class.'::'.$driver;
 	
-	eval "use $c";
+	eval  "use $c";
 	my $player = eval "new $c";
 	return $player;
 }

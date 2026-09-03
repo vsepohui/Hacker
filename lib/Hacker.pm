@@ -4,6 +4,9 @@ use 5.022;
 use warnings;
 
 use Hacker::Player;
+use Hacker::Render;
+
+use Carp;
 
 
 sub new {
@@ -21,7 +24,7 @@ sub new {
 }
 
 sub player {
-	my $self 	= shift;
+	my $self = shift;
 	return Hacker::Player->init($self->{player_driver});
 }
 
@@ -30,6 +33,15 @@ sub play {
 	my @signal	= @_;
 	
 	$self->player()->play(@signal);
+}
+
+sub render {
+	my $self	 = shift;
+	my $filename = shift;
+	my @signal   = @_;
+	
+	my $render = new Hacker::Render(filename => $filename);
+	$render->render(@signal);
 }
 
 1;
