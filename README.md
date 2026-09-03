@@ -17,3 +17,8 @@ sudo cpan install Audio::PortAudio
 ```
 ./player.pl 'map{sin($_*880*3.1415/44100)} 0..44100*5'
 ```
+
+## One-line PCM generator:
+```
+./render.pl --out=1.pcm 'map{sin($_*880*3.1415/44100)} 0..44100*5'
+```
