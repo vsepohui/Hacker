@@ -58,7 +58,7 @@ sub sun {
 	
 	my ($x, $y);
 	
-	my $step = int ($offset + 0.5);
+	my $step = int $offset;
 	if ($step % 2 == 0) {
 		$x = $offset - $step;
 		$y = sqrt(1 - $x * $x);
