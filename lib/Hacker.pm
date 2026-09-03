@@ -5,6 +5,9 @@ use warnings;
 
 use Hacker::Player;
 use Hacker::Render;
+use Hacker::Synth::Sun;
+use Hacker::Synth::Saw;
+use Hacker::Synth::Triangle;
 
 use Carp;
 
@@ -54,63 +57,18 @@ sub pattern {
 
 sub sun {
 	my $class  = shift;
-	my $offset = shift;
-	
-	my ($x, $y);
-	
-	my $step = int $offset;
-	if ($step % 4 ~~ [0, 3]) {
-		$x = $offset - $step;
-		$y = sqrt(1 - $x * $x);
-	} else {
-		$x = $offset - $step;
-		$y = -1 * sqrt(1 - $x * $x);
-	}
-	
-	return $y;
+	return Hacker::Synth::Sun->generate(@_);
 }
 
 sub saw {
 	my $class  = shift;
-	my $offset = shift;
-	
-	my ($x, $y);
-	
-	my $step = int $offset;
-	if ($step % 4 ~~ [0, 3]) {
-		$x = $offset - $step;
-		$y = 1;
-	} else {
-		$x = $offset - $step;
-		$y = -1;
-	}
-	
-	return $y;
+	return Hacker::Synth::Saw->generate(@_);
 }
 
 
 sub triangle {
 	my $class  = shift;
-	my $offset = shift;
-	
-	my ($x, $y);
-	
-	my $step = int $offset;
-	$x = $offset - $step;
-	
-	my $s = $step % 4;
-	
-	if ($s == 0) {
-		$y = 1 - $x;
-	} elsif ($s == 3) {
-		$y = $step - $x;
-	} elsif ($s == 1) {
-		$y = $step - $x - 1;
-	} else {
-		$y = -$x;
-	}
-	
-	return $y;
+	return Hacker::Synth::Triangle->generate(@_);
 }
 
 
