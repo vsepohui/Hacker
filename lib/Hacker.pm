@@ -52,4 +52,23 @@ sub pattern {
 	return map {$code->($_)} 0..44100 * $length;
 }
 
+sub sun {
+	my $class  = shift;
+	my $offset = shift;
+	
+	my ($x, $y);
+	
+	my $step = int ($offset + 0.5);
+	if ($step % 2 == 0) {
+		$x = $offset - $step;
+		$y = sqrt(1 - $x * $x);
+	} else {
+		$x = $offset - $step;
+		$y = -1 * sqrt(1 - $x * $x);
+	}
+	
+	return $y;
+}
+
+
 1;
