@@ -1,1 +1,2 @@
-map {sin($_ * 880 * 3.1415 / 44100.0)} 0 .. 44100 * 5;
+use Hacker::Synth::Sin;
+Hacker::Synth::Sin->signal;
