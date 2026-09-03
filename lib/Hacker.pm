@@ -20,7 +20,7 @@ use constant NOTES					=> ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A',
 sub new {
 	my $class = shift;
 	my %opts  = (
-		driver => Hacker->DEFAULT_DRIVER(),
+		driver => $class->DEFAULT_DRIVER(),
 		@_,
 	);
 	
