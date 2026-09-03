@@ -98,18 +98,16 @@ sub triangle {
 	my $step = int $offset;
 	$x = $offset - $step;
 	
-	if ($step % 4 ~~ [0, 3]) {
-		if ($step % 4 == 0) {
-			$y = 1 - $x;
-		} else {
-			$y = $step - $x;
-		}
+	my $s = $step % 4;
+	
+	if ($s == 0) {
+		$y = 1 - $x;
+	} elsif ($s == 3) {
+		$y = $step - $x;
+	} elsif ($s == 1) {
+		$y = $step - $x - 1;
 	} else {
-		if ($step % 4 == 1) {
-			$y = $step - $x - 1;
-		} else {
-			$y = -$x;
-		}
+		$y = -$x;
 	}
 	
 	return $y;
