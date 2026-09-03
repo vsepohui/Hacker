@@ -20,6 +20,6 @@ my $code = pop @ARGV or usage();
 my @signal = eval $code;
 die "Error in eval code \"$code\"\n" if $@;
 
-Hacker->new->render($out => @signal);
+Hacker->render($out => @signal);
 
 1;

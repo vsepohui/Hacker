@@ -29,14 +29,14 @@ sub player {
 }
 
 sub play {
-	my $self	= shift;
+	my $self = ref $_[0] ? shift : new shift;
 	my @signal	= @_;
 	
 	$self->player()->play(@signal);
 }
 
 sub render {
-	my $self	 = shift;
+	my $self = ref $_[0] ? shift : new shift;
 	my $filename = shift;
 	my @signal   = @_;
 	
