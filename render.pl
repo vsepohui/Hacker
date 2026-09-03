@@ -5,15 +5,15 @@ use warnings;
 
 BEGIN {use FindBin qw($Bin); require "$Bin/_init.pl";};
 
-use Hacker;
+use Hacker qw($h);
 
 my $usage = "Usage:\n\t$0 [--out=...] [--help] perl-code-generator";
-my %args = Hacker->process_command_line(qw/out=s h|help/, $usage);
+my %args = $h->process_command_line(qw/out=s h|help/, $usage);
 
 my $code = pop @ARGV or die $usage;
 
 my @signal = eval $code; die "Error in eval code \"$code\"\n" if $@;
 
-Hacker->render($args{out} => @signal);
+$h->render($args{out} => @signal);
 
 1;

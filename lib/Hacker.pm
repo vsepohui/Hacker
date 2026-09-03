@@ -3,6 +3,10 @@ package Hacker;
 use 5.022;
 use warnings;
 
+use Exporter qw(import);
+our @EXPORT_OK = qw($h);
+our $h = new Hacker;
+
 use Getopt::Long qw(GetOptions);
 
 use Hacker::Player;
@@ -75,6 +79,18 @@ sub parse_note {
 sub sample_rate {
 	my $self = shift;
 	return $self->config->{DEFAULT_SAMPLE_RATE};
+}
+
+sub driver {
+	my $self = shift;
+	my $driver = shift;
+	
+	if ($driver) {
+		confess "Wrong driver \"$driver\"" unless ($driver ~~ $self->config->{DRIVERS});
+		$self->{driver} = $driver;
+	}
+	
+	return $self->{driver};
 }
 
 sub player {

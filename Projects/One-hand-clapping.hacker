@@ -1,12 +1,9 @@
-use Hacker;
-
-my @seq = qw[0 4 5 0 4 5 0 4 5 7 7 7 16 12 9 16 12 9 16 12 9 7 7 7] x4;
+use Hacker qw($h);
 
 my (@c1, @c2);
-
-for (@seq) {
-	push @c1, Hacker->triangle->signal($_ - 1, 0.5);
-	push @c2, Hacker->triangle->signal($_ - 1 + 12, 0.5);
+for (qw[0 4 5 0 4 5 0 4 5 7 7 7 16 12 9 16 12 9 16 12 9 7 7 7] x4) {
+	push @c1, $h->triangle->signal($_ - 1, 0.5);
+	push @c2, $h->triangle->signal($_ - 1 + 12, 0.5);
 }
 
-Hacker->mixer(\@c1, \@c2)->master;
+$h->mixer(\@c1, \@c2)->master;
