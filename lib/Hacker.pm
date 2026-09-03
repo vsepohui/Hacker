@@ -59,7 +59,7 @@ sub sun {
 	my ($x, $y);
 	
 	my $step = int $offset;
-	if ($step % 2 == 0) {
+	if ($step % 4 ~~ [0, 3]) {
 		$x = $offset - $step;
 		$y = sqrt(1 - $x * $x);
 	} else {
@@ -77,12 +77,39 @@ sub saw {
 	my ($x, $y);
 	
 	my $step = int $offset;
-	if ($step % 2 == 0) {
+	if ($step % 4 ~~ [0, 3]) {
 		$x = $offset - $step;
 		$y = 1;
 	} else {
 		$x = $offset - $step;
 		$y = -1;
+	}
+	
+	return $y;
+}
+
+
+sub triangle {
+	my $class  = shift;
+	my $offset = shift;
+	
+	my ($x, $y);
+	
+	my $step = int $offset;
+	$x = $offset - $step;
+	
+	if ($step % 4 ~~ [0, 3]) {
+		if ($step % 4 == 0) {
+			$y = 1 - $x;
+		} else {
+			$y = $step - $x;
+		}
+	} else {
+		if ($step % 4 == 1) {
+			$y = $step - $x - 1;
+		} else {
+			$y = -$x;
+		}
 	}
 	
 	return $y;
