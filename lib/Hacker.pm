@@ -19,12 +19,12 @@ use constant DEFAULT_DRIVER		 => 'ProAudio';
 sub new {
 	my $class = shift;
 	my %opts  = (
-		player_driver => Hacker->DEFAULT_DRIVER(),
+		driver => Hacker->DEFAULT_DRIVER(),
 		@_,
 	);
 	
 	my $self = {
-		player_driver => $opts{player_driver},
+		driver => $opts{driver},
 	};
 	
 	return bless $self, $class;	
@@ -37,7 +37,7 @@ sub sample_rate {
 
 sub player {
 	my $self = shift;
-	return Hacker::Player->init($self->{player_driver});
+	return Hacker::Player->init($self->{driver});
 }
 
 sub play {

@@ -10,23 +10,6 @@ use Hacker::Render;
 use File::Temp qw(tempfile);
 
 
-sub new {
-	my $class = shift;
-	my %opts  = (
-		volume		=> $class->DEFAULT_VOLUME(),
-		@_,
-	);
-	
-	my $volume      = $opts{volume};
-	
-	my $max_amplitude 	= 32767 * $volume;
-
-	return $class->SUPER::new(
-		volume			=> $volume,
-		max_amplitude 	=> $max_amplitude,
-	);
-}
-
 sub play {
 	my $self = shift;
 	my @signal = @_;

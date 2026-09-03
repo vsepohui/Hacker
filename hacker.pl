@@ -28,10 +28,11 @@ my @signal = eval $proj;
 
 die $@ if $@;
 
+my $hacker = new Hacker(driver => $driver);
 unless ($render) {
-	Hacker->play(@signal);
+	$hacker->play(@signal);
 } else {
-	Hacker->render($render => @signal);
+	$hacker->render($render => @signal);
 }
 
 
