@@ -12,16 +12,13 @@ sub new {
 	return bless $self, $class;
 }
 
-my $i = 0;
 # Load ./hacker.pl Project from a file and preparing, executing
 sub load_project {
 	my $self = shift;
 	my $file = shift;
 	
-
-	
 	my $project;
-	
+
 	# Load file
 	my $fi;
 	open $fi, $file;

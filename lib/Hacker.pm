@@ -228,8 +228,7 @@ sub delay {
 
 # Accessor
 sub load {
-	my $file = shift;
-	Hacker::Project->new()->load_project($file);
+	Hacker::Project->new()->load_project(@_);
 }
 
 # Usefull util for parsing command-line
