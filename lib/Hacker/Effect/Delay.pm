@@ -11,8 +11,9 @@ use Hacker::Effect::Normalize;
 sub new {
 	my $class = shift;
 	my %opts  = (
-		time 		=> 0.3,
-		level		=> 0.5,
+		time 			=> 0.3,
+		level			=> 0.5,
+		original_level 	=> 1,
 		#feedback 	=> 0.5,
 		@_,
 	);
@@ -24,18 +25,20 @@ sub process {
 	my $self = shift;
 	my @s = @_;
 	
+	my @copy = @s;
+	
 	my $rate = 44100;
 	my $step = int $self->{time} * $rate;
 	
 	my $n = scalar @s;
 	for (my $i = 0 ; $i < $n ; $i ++) {
 		if ($i >= $self->{time} * $rate) {
-			$s[$i] += $s[$i - $step] * $self->{level};
+			$s[$i] = $s[$i] * $self->{original_level} + $copy[$i - $step] * $self->{level};
 		}
 	}
 	
 	for (my $i = 0 ; $i < $step ; $i ++) {
-		push @s, $s[$n-$step+$i] * $self->{level};
+		push @s, $copy[$n-$step+$i] * $self->{level};
 	}
 	
 	return Hacker::Effect::Normalize->process(@s);
