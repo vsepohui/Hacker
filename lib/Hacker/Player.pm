@@ -22,6 +22,12 @@ sub new {
 	return bless $self, $class;
 }
 
+sub limiter {
+	my $self = shift;
+	my $s = shift;
+	return $s > 1 ? 1 : $s < -1 ? -1 : $s;
+}
+
 sub play {
 	my $self   = shift;
 	my @signal = @_;

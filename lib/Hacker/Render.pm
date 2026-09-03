@@ -41,7 +41,7 @@ sub render {
 	# Render PCM
 	my @s = ();
 	for my $s (@signal) {
-		$s = $s > 1 ? 1 : $s < -1 ? -1 : $s;
+		$s = $self->limiter($s);
 		
 		my $sample = $s * $self->{max_amplitude};
 		my $int_sample = int($sample + 0.5);

@@ -41,8 +41,7 @@ sub play {
 	my $self   = shift;
 	my @signal = @_;
 	
-	my $wave = pack "f*", map {$_ > 1 ? 1 : $_ < -1 ? -1 : $_} map {$_ * $self->{volume}} @signal;
-	
+	my $wave = pack "f*", map {$self->limiter($_)} map {$_ * $self->{volume}} @signal;
 	$self->{stream}->write($wave);
 }
 
