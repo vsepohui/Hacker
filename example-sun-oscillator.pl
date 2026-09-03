@@ -6,10 +6,9 @@ use warnings;
 use lib 'lib';
 
 use Hacker;
+use Hacker::Synth::Sun;
 
-Hacker->play(map {Hacker->sun($_ * 300 / 44100.0)} 0 .. 44100 * 5);
-
-
+Hacker->play(Hacker::Synth::Sun->signal);
 
 
 1;

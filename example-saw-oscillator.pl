@@ -6,10 +6,8 @@ use warnings;
 use lib 'lib';
 
 use Hacker;
+use Hacker::Synth::Saw;
 
-Hacker->play(map {Hacker->saw($_ * 110 / 44100.0)} 0 .. 44100 * 5);
-
-
-
+Hacker->play(Hacker::Synth::Saw->signal);
 
 1;

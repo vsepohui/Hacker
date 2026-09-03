@@ -6,10 +6,8 @@ use warnings;
 use lib 'lib';
 
 use Hacker;
+use Hacker::Synth::Triangle;
 
-Hacker->play(map {Hacker->triangle($_ * 220 / 44100.0)} 0 .. 44100 * 5);
-
-
-
+Hacker->play(Hacker::Synth::Triangle->signal);
 
 1;
