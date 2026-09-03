@@ -1,3 +1,1 @@
-use Hacker qw($h);
-
 $h->sampler('./distr/Format.audio.JSON/distr/Ivan_Trunaev_-_Organ_Trio.mp3')->signal(-12);

@@ -1,5 +1,3 @@
-use Hacker qw($h);
-
 my $kick = $h->sampler('Samples/extra/kick_029.flac');
 my $hat  = $h->sampler('Samples/extra/hat_003.flac');
 

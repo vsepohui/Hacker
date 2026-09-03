@@ -199,6 +199,8 @@ sub load_project {
 	open $fi, $file;
 	$project = join '', <$fi>;
 	close $fi;
+	
+	$project = q[use Hacker qw($h);] . $project;
 
 	my @signal = eval $project; die $@ if $@;
 	
