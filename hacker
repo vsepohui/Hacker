@@ -3,7 +3,8 @@
 use 5.022;
 use warnings;
 
-BEGIN {use FindBin qw($Bin); require "$Bin/_init.pl";};
+use FindBin qw($Bin);
+use lib "$Bin/lib";
 
 use Hacker;
 
