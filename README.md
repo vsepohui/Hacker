@@ -39,3 +39,35 @@ Render Projects:
 ```
 
  
+# Examples of Hacker Project:
+
+Simple Drum Machine:
+
+```
+my $kick  = sampler('Samples/extra/kick_029.flac');
+my $snare = sampler('Samples/extra/snare_028.flac');
+my $hat   = sampler('Samples/extra/hat_003.flac');
+
+my @c1 = seq([$kick->play(-24)],  140, '0,.,.,.,0,0,.,.,0,.,.,.,0,.,.,.'); # Kick
+my @c2 = seq([$kick->play(-36)],  140, '0,.,.,.,0,0,.,.,0,.,.,.,0,.,.,.'); # Sub kick
+my @c3 = seq([$snare->play(-12)], 140, '.,.,0,.,.,.,0,.,.,.,0,.,.,.,0,.'); # Snare
+my @c4 = seq([$hat->play(-24)],   140, '0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0'); # Hat
+
+
+my @m = (mix(\@c1, \@c2, \@c3, \@c4)) x 4;
+
+mix ([gain [rev @m] => .1], \@m);
+
+```
+
+Random Piano Player
+
+```
+my (@c1, @c2);
+for (map {int rand(24)} 1..64) {
+	push @c1, sine($_, 0.5);
+	push @c2, sine($_+ 12, 0.5);
+}
+
+mix(\@c1, \@c2)
+```
