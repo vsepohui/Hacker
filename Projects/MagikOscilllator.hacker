@@ -1,0 +1,15 @@
+use Hacker::Synth::MagikOscillator;
+my $m = new Hacker::Synth::MagikOscillator;
+
+my (@c1, @c2);
+for ($m->sig(5)) {
+	push @c1, $_->[0];
+	push @c2, $_->[1];
+}
+
+my @m = mix(\@c1, \@c2);
+
+(mix(
+	[(seq([@m], 80, '-24,.,.,.,-12,.,.,.,-24,.,.,.,-12'))x4],
+	[(seq([@m], 80, '16,.,21,.,3,.,.,.,0,.,.,.,14'))x4],
+))x4;
