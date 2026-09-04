@@ -18,6 +18,7 @@ use Hacker::Synth::Sampler;
 use Hacker::Synth::Sequensor;
 use Hacker::Synth::Noise;
 use Hacker::Synth::Silence;
+use Hacker::Synth::Virtual;
 use Hacker::Mixer;
 use Hacker::Effect::Transpose;
 use Hacker::Effect::Reverse;

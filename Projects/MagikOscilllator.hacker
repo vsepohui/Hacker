@@ -1,8 +1,19 @@
-use Hacker::Synth::MagikOscillator;
-my $m = new Hacker::Synth::MagikOscillator;
+use Hacker::Magik::SquareOscillator;
+
+my $synth = new Hacker::Synth::Virtual(
+	generate => sub {
+		my $self  = shift;
+		my $offset = shift;
+	
+		my $a = Hacker::Synth::Triangle->generate($offset*10)/10;
+		my ($x, $y) = Hacker::Magik::SquareOscillator->calc($a);
+		return [Hacker::Synth::Sin->generate(int 100*$x)*$x, Hacker::Synth::Sin->generate(int 240*$y)*$y];
+	}
+);
+
 
 my (@c1, @c2);
-for ($m->sig(5)) {
+for ($synth->sig(5)) {
 	push @c1, $_->[0];
 	push @c2, $_->[1];
 }

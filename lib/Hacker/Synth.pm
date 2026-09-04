@@ -8,7 +8,8 @@ use base 'Hacker';
 
 sub new {
 	my $class = shift;
-	my $self = {};
+	my %opts = @_;
+	my $self = {%opts};
 	return bless $self, $class;
 }
 
