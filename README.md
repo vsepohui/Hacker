@@ -8,7 +8,7 @@ All project developed by Yahwe, Ivan Trunaev, Russia.
 
 ```
 git clone https://github.com/vsepohui/Hacker
-sudo apt install perl ffmpeg alsa-utils
+sudo apt install perl ffmpeg alsa-utils portaudio19-dev build-essential
 sudo cpan install Audio::PortAudio
 ```
 
