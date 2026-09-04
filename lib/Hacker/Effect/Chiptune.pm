@@ -11,7 +11,7 @@ sub process {
 	my @s = @_;
 	
 	return map {
-		int ($_ * 16) / 16.0
+		int ($_ * 32) / 32.0
 	} @s;
 }
 
