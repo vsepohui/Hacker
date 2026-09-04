@@ -4,7 +4,7 @@ use 5.022;
 use warnings;
 
 use Exporter qw(import);
-our @EXPORT = qw(sampler seq sequenser mix mixer rev crop silence transpose delay noise process_command_line triangle sine sun saw load);
+our @EXPORT = qw(sampler seq sequenser mix mixer rev crop silence transpose delay noise process_command_line triangle sine sun saw load gain);
 
 use Getopt::Long qw(GetOptions);
 
@@ -24,6 +24,7 @@ use Hacker::Effect::Transpose;
 use Hacker::Effect::Reverse;
 use Hacker::Effect::Delay;
 use Hacker::Effect::Crop;
+use Hacker::Effect::Gainer;
 
 use Hacker::Config;
 use Hacker::Project;
@@ -225,6 +226,13 @@ sub delay {
 	my %params = @_;
 	
 	Hacker::Effect::Delay->new(%params)->process(@$signal);
+}
+
+sub gain {
+	my $signal = shift;
+	my $value  = shift;
+	
+	Hacker::Effect::Gainer->new(value => $value)->process(@$signal);
 }
 
 # Accessor
