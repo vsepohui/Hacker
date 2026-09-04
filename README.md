@@ -44,7 +44,7 @@ Render Projects:
 ```
 
  
-# Examples of Hacker Project:
+# Example of Hacker Projects:
 
 Simple Drum Machine:
 
