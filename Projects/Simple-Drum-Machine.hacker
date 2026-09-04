@@ -1,6 +1,6 @@
-my $kick  = sampler('Samples/extra/kick_029.flac');
-my $snare = sampler('Samples/extra/snare_028.flac');
-my $hat   = sampler('Samples/extra/hat_003.flac');
+my $kick  = sample('Samples/extra/kick_029.flac');
+my $snare = sample('Samples/extra/snare_028.flac');
+my $hat   = sample('Samples/extra/hat_003.flac');
 
 my @c1 = seq([$kick->play(-24)],  140, '0,.,.,.,0,0,.,.,0,.,.,.,0,.,.,.'); # Kick
 my @c2 = seq([$kick->play(-36)],  140, '0,.,.,.,0,0,.,.,0,.,.,.,0,.,.,.'); # Sub kick

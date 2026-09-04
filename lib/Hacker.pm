@@ -4,7 +4,7 @@ use 5.022;
 use warnings;
 
 use Exporter qw(import);
-our @EXPORT = qw(sampler seq sequenser mix mixer rev crop silence transpose delay noise process_command_line triangle sine sun saw load gain);
+our @EXPORT = qw(sample seq sequenser mix mixer rev crop silence transpose delay noise process_command_line triangle sine sun saw load gain);
 
 use Getopt::Long qw(GetOptions);
 
@@ -163,7 +163,7 @@ sub triangle {
 }
 
 # Accessor
-sub sampler {
+sub sample {
 	return Hacker::Synth::Sampler->new(@_);
 }
 
