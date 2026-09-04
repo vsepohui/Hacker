@@ -4,7 +4,7 @@ use 5.022;
 use warnings;
 
 use Exporter qw(import);
-our @EXPORT = qw(sample sampler seq sequenser mix mixer rev crop silence transpose delay noise process_command_line triangle sine sun saw load gain virtual);
+our @EXPORT = qw(sample sampler seq sequenser mix mixer rev crop silence transpose pitch delay noise process_command_line triangle sine sun saw load gain virtual);
 
 use Getopt::Long qw(GetOptions);
 
@@ -215,6 +215,11 @@ sub transpose {
 	my $signal = shift;
 	my $value  = shift;
 	return Hacker::Effect::Transpose->new($value)->process(@$signal);
+}
+
+# Alias for transpose
+sub pitch {
+	transpose(@_);
 }
 
 # Accessor
