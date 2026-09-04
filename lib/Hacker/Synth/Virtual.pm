@@ -8,19 +8,16 @@ use base 'Hacker::Synth';
 
 sub new {
 	my $class = shift;
-	my %opts  = (
-		generate => undef,
-		@_,
-	);
+	my $code  = shift;
 	
-	return $class->SUPER::new(%opts);
+	return $class->SUPER::new('code' => $code);
 }
 
 sub generate {
 	my $self 	= shift;
 	my $offset 	= shift;
 	
-	return $self->{generate}->($self, $offset);
+	return $self->{code}->($offset);
 }
 
 1;

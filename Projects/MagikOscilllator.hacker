@@ -1,15 +1,12 @@
 use Hacker::Magik::SquareOscillator;
 
-my $synth = new Hacker::Synth::Virtual(
-	generate => sub {
-		my $self  = shift;
-		my $offset = shift;
-	
-		my $a = Hacker::Synth::Triangle->generate($offset*10)/10;
-		my ($x, $y) = Hacker::Magik::SquareOscillator->calc($a);
-		return [Hacker::Synth::Sin->generate(int 100*$x), Hacker::Synth::Sin->generate(int 240*$y)];
-	}
-);
+my $synth = virtual(sub {
+	my $offset = shift;
+
+	my $a = Hacker::Synth::Triangle->generate($offset*10)/10;
+	my ($x, $y) = Hacker::Magik::SquareOscillator->calc($a);
+	return [Hacker::Synth::Sin->generate(int 100*$x), Hacker::Synth::Sin->generate(int 240*$y)];
+});
 
 
 my (@c1, @c2);
