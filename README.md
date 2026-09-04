@@ -5,6 +5,12 @@ Release just for demosceners and professional sound engeeners.
 Hacker is a console DAW for a monks of Perl and UNIX!
 
 
+# Install Hacker
+
+```
+git clone https://github.com/vsepohui/Hacker
+```
+
 # Setup (for developers)
 
 ```
