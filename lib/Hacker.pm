@@ -4,7 +4,7 @@ use 5.022;
 use warnings;
 
 use Exporter qw(import);
-our @EXPORT = qw(sample sampler seq sequenser mix mixer rev crop silence transpose pitch delay noise process_command_line triangle sine sun saw load gain virtual);
+our @EXPORT = qw(sample sampler seq sequenser mix mixer rev crop silence transpose pitch delay noise process_command_line triangle sine sun saw load gain virtual chip);
 
 use Getopt::Long qw(GetOptions);
 
@@ -25,6 +25,7 @@ use Hacker::Effect::Reverse;
 use Hacker::Effect::Delay;
 use Hacker::Effect::Crop;
 use Hacker::Effect::Gainer;
+use Hacker::Effect::Chiptune;
 
 use Hacker::Config;
 use Hacker::Project;
@@ -225,6 +226,11 @@ sub pitch {
 # Accessor
 sub rev {
 	return Hacker::Effect::Reverse->new()->process(@_);
+}
+
+# Accessor
+sub chip {
+	return Hacker::Effect::Chiptune->new()->process(@_);
 }
 
 # Accessor
