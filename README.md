@@ -8,13 +8,9 @@ All project developed by Yahwe, Ivan Trunaev, Russia.
 
 ```
 git clone https://github.com/vsepohui/Hacker
-```
-
-# Setup (for developers)
-
-```
 git submodule update --init --recursive
 sudo cpan install Audio::PortAudio
+sudo apt install perl ffmpeg alsa-utils
 ```
 
 # Using of Hacker

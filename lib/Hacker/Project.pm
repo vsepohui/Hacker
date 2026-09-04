@@ -18,6 +18,8 @@ sub load_project {
 	my $file = shift;
 	
 	my $project;
+	
+	die "Project $file not found" unless -f $file;
 
 	# Load file
 	my $fi;
