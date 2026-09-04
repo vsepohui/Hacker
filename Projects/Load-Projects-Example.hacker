@@ -1,0 +1,4 @@
+mix(
+	[load './Projects/Simple-Drum-Machine.hacker'],
+	[load './Projects/One-hand-clapping.hacker'],
+);
