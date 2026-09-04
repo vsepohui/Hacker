@@ -2,6 +2,8 @@ All projects by Yahwe, Ivan Trunaev, Russia.
 
 Release just for demosceners and professional sound engeeners.
 
+Hacker is a console DAW for a monks of Perl and UNIX!
+
 
 # Setup (for developers)
 
