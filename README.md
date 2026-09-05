@@ -21,7 +21,7 @@ sudo apt install perl ffmpeg alsa-utils
 ## On Arch Linux / Manjaro
 
 ```
-sudo pacman -S perl ffmpeg alsa-utils sox
+sudo pacman -S perl ffmpeg alsa-utils
 ```
 
 # Using of Hacker
