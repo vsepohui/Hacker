@@ -6,6 +6,7 @@ use warnings;
 use FindBin qw($Bin);
 use lib "$Bin/../lib";
 
+use Cwd qw(getcwd);
 use Hacker;
 
 my $usage = "Usage:\n\t$0 [--driver=...] [--help|-h] [--version|-v] [--input|-i=file.hacker] [--output|-o=file.pcm] [--exec|-e=code] [project-file.hacker] [-]";
@@ -25,6 +26,8 @@ my $stdin = ($ARGV[-2] // '') eq '-';
 
 my $file = $args{input} // $ARGV[-1] // '';
 
+my $pwd = getcwd;
+
 if (my $code = $args{exec} || $stdin || !(-f $file)) {
 	if ($stdin || !$code || $code eq '1') {
 		$code = join '', <>;
@@ -39,6 +42,7 @@ if (my $code = $args{exec} || $stdin || !(-f $file)) {
 }
 
 if (my $file = $args{output}) {
+	chdir $pwd;
 	$hacker->render($file => @signal);
 } elsif ($stdout) {
 	$hacker->render('<STDOUT>' => @signal);
