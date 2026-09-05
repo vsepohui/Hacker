@@ -13,7 +13,7 @@ sub new {
 	unless ($self) {
 		my $fi;
 		
-		open $fi, '<:encoding(utf8)', $Bin.'/hacker.conf';
+		open $fi, $Bin.'/hacker.conf';
 		my $s = join '', <$fi>;
 		close $fi;
 		
