@@ -14,14 +14,14 @@ sudo cpan install Audio::PortAudio
 
 # Using of Hacker
 
-Play Projects:
+Play Project:
 ```
 ./hacker Projects/One-hand-clapping.hacker   
 ```
 
-Render Projects:
+Render Project (in RAW format):
 ```
-./hacker --render=1.pcm Projects/One-hand-clapping.hacker
+./hacker --render=filename.pcm Projects/One-hand-clapping.hacker
 ```
 
  
