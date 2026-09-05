@@ -27,7 +27,7 @@ sudo pacman -S perl ffmpeg
 ## On MacOS
 
 ```
-sudo brew install perl ffmpeg
+brew install perl ffmpeg
 ```
 
 # Using of Hacker
