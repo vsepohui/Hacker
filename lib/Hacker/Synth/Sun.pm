@@ -15,10 +15,10 @@ sub generate {
 	my $step = int $offset;
 	if ($step % 4 ~~ [0, 3]) {
 		$x = $offset - $step;
-		$y = sqrt(1 - $x * $x);
+		$y = (1 - $x * $x) ** .5;
 	} else {
 		$x = $offset - $step;
-		$y = -1 * sqrt(1 - $x * $x);
+		$y = -1 * (1 - $x * $x) **.5;
 	}
 	
 	return $y;
