@@ -15,12 +15,13 @@ my @signal;
 
 my $hacker = new Hacker(driver => $args{driver});
 
-my $console = $ARGV[-1] // '' eq '-';
+my $stdout = $ARGV[-1] // '' eq '-';
+my $stdin = $ARGV[-2] // '' eq '-';
 
 my $file = $args{input} // $ARGV[-1] // '';
 
-if (my $code = $args{exec} || !(-f $file)) {
-	if (!$code || $code eq '1') {
+if (my $code = $args{exec} || $stdin || !(-f $file)) {
+	if ($stdin || !$code || $code eq '1') {
 		$code = join '', <>;
 	}
 	
@@ -34,7 +35,7 @@ if (my $code = $args{exec} || !(-f $file)) {
 
 if (my $file = $args{output}) {
 	$hacker->render($file => @signal);
-} elsif ($console) {
+} elsif ($stdout) {
 	$hacker->render('<STDOUT>' => @signal);
 } else {
 	$hacker->play(@signal);
