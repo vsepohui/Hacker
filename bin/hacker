@@ -41,8 +41,9 @@ if (my $code = $args{exec} || $stdin || !(-f $file)) {
 	@signal = load($file);
 }
 
+chdir $pwd;
+
 if (my $file = $args{output}) {
-	chdir $pwd;
 	$hacker->render($file => @signal);
 } elsif ($stdout) {
 	$hacker->render('<STDOUT>' => @signal);
