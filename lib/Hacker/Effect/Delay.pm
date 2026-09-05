@@ -12,6 +12,7 @@ sub new {
 	my $class = shift;
 	my %opts  = (
 		time 			=> 0.3, # Delay time
+		frames			=> 0,
 		level			=> 0.5, # Mix level
 		original_level 	=> 1,   # Original audio stream level
 		#feedback 	=> 0.5,
@@ -28,11 +29,11 @@ sub process {
 	my @copy = @s;
 	
 	my $rate = $self->sample_rate;
-	my $step = int $self->{time} * $rate;
+	my $step = $self->{frames} || int $self->{time} * $rate;
 	
 	my $n = scalar @s;
 	for (my $i = 0 ; $i < $n ; $i ++) {
-		if ($i >= $self->{time} * $rate) {
+		if ($i >= $step) {
 			$s[$i] = $s[$i] * $self->{original_level} + $copy[$i - $step] * $self->{level};
 		}
 	}
