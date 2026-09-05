@@ -44,6 +44,7 @@ sudo make install
 Play Project:
 ```
 hacker Projects/One-hand-clapping.hacker   
+hacker -i Projects/One-hand-clapping.hacker   
 ```
 
 Render Project (in RAW format):
@@ -73,6 +74,12 @@ Console input:
 ```
 echo "chip sine" | hacker
 ```
+
+Console input and output:
+```
+echo "chip sine" | hacker | ffplay -autoexit -loglevel quiet -nodisp -f s16le -ar 44100 -
+```
+
 
  
 # Example of Hacker Projects
