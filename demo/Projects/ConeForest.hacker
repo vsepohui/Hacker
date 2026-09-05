@@ -2,7 +2,7 @@ use Math::Trig qw(asin acos);
 
 my ($a, $b, $c) = (7, 2, sqrt(7*7+2*2));
 
-virtual (sub {
+my @s1 = virtual (sub {
 	my $offset = shift;
 
 	my $x;
@@ -30,5 +30,16 @@ virtual (sub {
 	$c = sqrt($a*$a+$b*$b);
 	
 
-	return sin($x*$offset);
-})->sig (0, 60);
+	return sin($alpha*$offset);
+})->sig (0, 1);
+
+my @c1;
+for (@s1[0..100]) {
+	push @c1, sine(int ($_*100), 0.1);
+}
+
+
+
+
+
+mix(\@c1);
