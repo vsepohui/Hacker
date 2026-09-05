@@ -13,13 +13,6 @@ sub new {
 	return bless $self, $class;
 }
 
-sub note_rate {
-	my $self = shift;
-	my $note = shift;
-	
-	return Hacker->config->{NOTES_FREQUES}->[$note + 51];
-}
-
 # Accessor
 sub sig {
 	my $self = ref $_[0] ? shift : new shift;

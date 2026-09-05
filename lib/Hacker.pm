@@ -4,7 +4,7 @@ use 5.022;
 use warnings;
 
 use Exporter qw(import);
-our @EXPORT = qw(sample sampler seq sequenser mix mixer rev crop silence transpose pitch delay noise process_command_line triangle sine sun saw load gain virtual chip);
+our @EXPORT = qw(sample sampler seq sequenser mix mixer rev crop silence transpose pitch delay noise process_command_line triangle sine sun saw load gain virtual chip e);
 
 use Getopt::Long qw(GetOptions);
 
@@ -30,6 +30,8 @@ use Hacker::Effect::Chiptune;
 use Hacker::Config;
 use Hacker::Project;
 
+use Math::Trig qw(asin acos);
+
 use Carp;
 
 
@@ -48,6 +50,14 @@ sub new {
 # Config accessor
 sub config {
 	return new Hacker::Config;
+}
+
+
+sub note_rate {
+	my $self = shift;
+	my $note = shift;
+	
+	return Hacker->config->{NOTES_FREQUES}->[$note + 51];
 }
 
 # Note parsing, getting integer and string note return number of note
@@ -280,5 +290,49 @@ sub process_command_line {
 	return %args;
 }
 
+sub e {
+	my $a = shift;
+	my $b = shift;
+	my $c = sqrt($a*$a + $b*$b);
+	my $n = shift;
+	my $hook = shift;
+	
+	my @s;
+	
+	my $modulation = Hacker->note_rate(0) / Hacker->sample_rate;
+	for (1..$n) {
+		my $offset = $_ * $modulation;
+
+		my $x;
+		
+		my $alpha;
+		if ($a > $b) {
+			$x = $b / $a;
+			$alpha = asin($b / $c);
+
+			$c = acos($alpha / 2.0) * $b;
+			$a = sqrt($c*$c - $b*$b);
+		} else {
+			$x = $b / $a;
+			$alpha = asin($a / $c);
+
+			$c = acos($alpha / 2.0) * $a;
+			$b = sqrt($c*$c - $a*$a);
+		}
+		
+		if ($c < 10) {
+			$a *= 10;
+			$b *= 10;
+		}
+		
+		$c = sqrt($a*$a+$b*$b);
+		
+		push @s, $hook->(
+			$alpha,
+			$offset
+		);
+	}
+	return @s;
+}
 
 1;
