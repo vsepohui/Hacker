@@ -250,10 +250,9 @@ sub delay {
 }
 
 sub gain {
-	my $signal = shift;
-	my $value  = shift;
+	my $value  = pop;
 	
-	Hacker::Effect::Gainer->new(value => $value)->process(@$signal);
+	Hacker::Effect::Gainer->new(value => $value)->process(@_);
 }
 
 # Accessor
