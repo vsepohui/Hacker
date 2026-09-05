@@ -121,7 +121,7 @@ sudo ln -s $PWD/hacker.conf /etc/hacker.conf
 ## On Debian / Ubuntu
 
 ```
-echo 'export PERL5LIB="$PWD/lib:$PERL5LIB"' >> ~/.bashrc && zsh ~/.bashrc
+echo 'export PERL5LIB="$PWD/lib:$PERL5LIB"' >> ~/.bashrc && bash ~/.bashrc
 sudo ln -s $PWD/hacker /usr/bin/hacker
 sudo ln -s $PWD/hacker.conf /etc/hacker.conf
 ```
