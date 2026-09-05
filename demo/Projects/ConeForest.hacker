@@ -1,0 +1,34 @@
+use Math::Trig qw(asin acos);
+
+my ($a, $b, $c) = (7, 2, sqrt(7*7+2*2));
+
+virtual (sub {
+	my $offset = shift;
+
+	my $x;
+	
+	my $alpha;
+	if ($a > $b) {
+		$x = $b / $a;
+		$alpha = asin($b / $c);
+
+		$c = acos($alpha / 2.0) * $b;
+		$a = sqrt($c*$c - $b*$b);
+	} else {
+		$x = $b / $a;
+		$alpha = asin($a / $c);
+
+		$c = acos($alpha / 2.0) * $a;
+		$b = sqrt($c*$c - $a*$a);
+	}
+	
+	if ($c < 10) {
+		$a *= 10;
+		$b *= 10;
+	}
+	
+	$c = sqrt($a*$a+$b*$b);
+	
+
+	return sin($x*$offset);
+})->sig (0, 60);
