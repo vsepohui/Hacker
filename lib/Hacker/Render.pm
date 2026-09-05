@@ -32,8 +32,11 @@ sub render {
 	
 	
 	my $filename = $self->{filename};
+
+	my $fh;
 	
-	open my $fh, '>' . $filename;
+		
+	open $fh, '>' . $filename if ($filename ne '<STDOUT>');
 	
 	# Render PCM
 	my @s = ();
@@ -43,9 +46,14 @@ sub render {
 		my $sample = $s * $self->{max_amplitude};
 		my $int_sample = int($sample + 0.5);
 
-		print $fh pack('s', $int_sample);
+		if ($filename ne '<STDOUT>') {
+			print $fh pack('s', $int_sample);
+		} else {
+			print pack('s', $int_sample);
+		}
 	}
-	close $fh;
+	
+	close $fh if ($filename ne '<STDOUT>');
 
 	return;
 }

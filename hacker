@@ -8,12 +8,14 @@ use lib "$Bin/lib";
 
 use Hacker;
 
-my $usage = "Usage:\n\t$0 [--driver=...] [--help] [--play] [--output|-o=file.pcm] [--exec|-e=code] project-file.hacker";
-my %args = process_command_line(qw/driver=s play render=s e|exec=s h|help/, $usage);
+my $usage = "Usage:\n\t$0 [--driver=...] [--help] [--play] [--output|-o=file.pcm] [--exec|-e=code] project-file.hacker [-]";
+my %args = process_command_line(qw/driver=s play o|output=s e|exec=s h|help/, $usage);
 
 my @signal;
 
 my $hacker = new Hacker(driver => $args{driver});
+
+my $console = $ARGV[-1] // '' eq '-';
 
 if (my $code = $args{exec}) {
 	my $code = q[use Hacker;] . $code;
@@ -28,9 +30,10 @@ if (my $code = $args{exec}) {
 
 if (my $file = $args{output}) {
 	$hacker->render($file => @signal);
-	exit;
+} elsif ($console) {
+	$hacker->render('<STDOUT>' => @signal);
+} else {
+	$hacker->play(@signal);
 }
-
-$hacker->play(@signal);
 
 1;
