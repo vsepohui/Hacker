@@ -47,6 +47,15 @@ Run code from command line:
  
 # Example of Hacker Projects
 
+Dub-step like wave:
+
+```
+chip gain (delay [mix(
+	[sine 13, 30],
+	[silence (0.05), sine 12, 30],
+)], frames => 1), 2;
+```
+
 Simple Drum Machine:
 
 ```
