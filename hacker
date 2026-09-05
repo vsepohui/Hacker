@@ -8,8 +8,13 @@ use lib "$Bin/lib";
 
 use Hacker;
 
-my $usage = "Usage:\n\t$0 [--driver=...] [--help] [--play] [--input|-i=file.hacker] [--output|-o=file.pcm] [--exec|-e=code] [project-file.hacker] [-]";
-my %args = process_command_line(qw/driver=s play i|input=s o|output=s e|exec=s h|help/, $usage);
+my $usage = "Usage:\n\t$0 [--driver=...] [--help|-h] [--version|-v] [--input|-i=file.hacker] [--output|-o=file.pcm] [--exec|-e=code] [project-file.hacker] [-]";
+my %args = process_command_line(qw/driver=s i|input=s o|output=s e|exec=s h|help v|version/, $usage);
+
+if ($args{version}) {
+	say "Hacker 0.2b";
+	exit;
+}
 
 my @signal;
 
