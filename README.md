@@ -92,8 +92,3 @@ mix(\@c1, \@c2)
 ## Crushes on memory leaks
 
 Perl had a much memory leaks, and on big projects Hacker crushed. Sorry, I don't know how to fix it.
-
-## Tmp files
-
-Hacker uses tmp-files for storing render of project before play it, and if you kill application while playing, tmp files my be stored on you hand drive.
-May be I will introduse %SIG hook to Destroyer of app.
