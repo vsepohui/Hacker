@@ -10,59 +10,68 @@ All project developed by Yahwe, Ivan Trunaev, Russia.
 git clone https://github.com/vsepohui/Hacker
 ```
 
-# Install dependencies
+# Install
 
-## On Debian / Ubuntu
+## Dependencies
+
+### On Debian / Ubuntu
 
 ```
 sudo apt install perl ffmpeg
 ```
 
-## On Arch Linux / Manjaro
+### On Arch Linux / Manjaro
 
 ```
 sudo pacman -S perl ffmpeg
 ```
 
-## On MacOS
+### On MacOS
 
 ```
 brew install perl ffmpeg
 ```
+## Install Hacker
+
+```
+perl Makefile.PL
+sudo make install
+```
+
 
 # Using of Hacker
 
 Play Project:
 ```
-./hacker Projects/One-hand-clapping.hacker   
+hacker Projects/One-hand-clapping.hacker   
 ```
 
 Render Project (in RAW format):
 ```
-./hacker -o filename.pcm Projects/One-hand-clapping.hacker
+hacker -o filename.pcm Projects/One-hand-clapping.hacker
 ```
 
 Render to flac (supported wav / mp3 / flac / ogg):
 ```
-./hacker -o filename.flac -e "chip sine"
+hacker -o filename.flac -e "chip sine"
 ```
 
 Run code from command line:
 
 ```
-./hacker -e "chip sine"
+hacker -e "chip sine"
 ```
 
 Console RAW output and play a sound by an ffplay util:
 
 ```
-./hacker -e "chip sine" - | ffplay -autoexit -loglevel quiet -nodisp -f s16le -ar 44100 -
+hacker -e "chip sine" - | ffplay -autoexit -loglevel quiet -nodisp -f s16le -ar 44100 -
 ```
 
 Console input:
 
 ```
-echo "chip sine" | ./hacker
+echo "chip sine" | hacker
 ```
 
  
@@ -107,25 +116,6 @@ for (map {int rand(24)} 1..64) {
 
 mix(\@c1, \@c2)
 ```
-
-# Hack: How to install Hacker like a system application
-
-## On Linux Manjaro 
-
-```
-echo 'export PERL5LIB="$PWD/lib:$PERL5LIB"' >> ~/.zshrc && zsh ~/.zshrc
-sudo ln -s $PWD/hacker /usr/bin/hacker
-sudo ln -s $PWD/hacker.conf /etc/hacker.conf
-```
-
-## On Debian / Ubuntu
-
-```
-echo 'export PERL5LIB="$PWD/lib:$PERL5LIB"' >> ~/.bashrc && bash ~/.bashrc
-sudo ln -s $PWD/hacker /usr/bin/hacker
-sudo ln -s $PWD/hacker.conf /etc/hacker.conf
-```
-
 
 # Bugs
 
