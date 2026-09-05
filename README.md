@@ -35,13 +35,13 @@ Play Project:
 
 Render Project (in RAW format):
 ```
-./hacker --render=filename.pcm Projects/One-hand-clapping.hacker
+./hacker -o filename.pcm Projects/One-hand-clapping.hacker
 ```
 
 Run code from command line:
 
 ```
-./hacker --exec='chip sine'
+./hacker -e 'chip sine'
 ```
 
  
