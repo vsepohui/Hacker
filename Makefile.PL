@@ -7,7 +7,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME         => 'Hacker',
     AUTHOR       => q{Ivan Trunaev},
-    PL_FILES 	 => { './hacker' },
+    EXE_FILES 	 => [ './hacker' ],
 );
 
 1;
