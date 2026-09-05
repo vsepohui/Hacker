@@ -25,7 +25,7 @@ Render Project (in RAW format):
 ```
 
  
-# Example of Hacker Projects:
+# Example of Hacker Projects
 
 Simple Drum Machine:
 
