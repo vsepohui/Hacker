@@ -6,9 +6,23 @@ All project developed by Yahwe, Ivan Trunaev, Russia.
 
 # Install Hacker
 
+## Getting Code
+
 ```
 git clone https://github.com/vsepohui/Hacker
+```
+
+## On Debian / Ubuntu
+
+```
 sudo apt install perl ffmpeg alsa-utils portaudio19-dev build-essential
+sudo cpan install Audio::PortAudio
+```
+
+## On Arch Linux / Manjaro
+
+```
+sudo pacman -S perl ffmpeg alsa-utils portaudio base-devel
 sudo cpan install Audio::PortAudio
 ```
 
