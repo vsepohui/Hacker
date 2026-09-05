@@ -20,7 +20,12 @@ sub process {
 	my @s = @_;
 	
 	my $size = int ($self->sample_rate * $self->{length});
-	return @s[0..$size];
+	
+	if (scalar @s >= $size) {
+		return @s[0..$size];
+	} else {
+		return @s, (0) x ($size - scalar @s);
+	}
 }
 
 1;
