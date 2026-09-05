@@ -21,7 +21,7 @@ sudo apt install perl ffmpeg alsa-utils
 ## On Arch Linux / Manjaro
 
 ```
-sudo pacman -S perl ffmpeg alsa-utils
+sudo pacman -S perl ffmpeg alsa-utils sox
 ```
 
 # Using of Hacker
@@ -46,6 +46,12 @@ Console RAW output and play a sound by an aplay util:
 
 ```
 ./hacker -e "chip sine" - | aplay -q -f s16_le -r 44100
+```
+
+Console input:
+
+```
+echo 'chip sine' | ./hacker
 ```
 
  

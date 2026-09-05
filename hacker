@@ -8,7 +8,7 @@ use lib "$Bin/lib";
 
 use Hacker;
 
-my $usage = "Usage:\n\t$0 [--driver=...] [--help] [--play] [--output|-o=file.pcm] [--exec|-e=code] project-file.hacker [-]";
+my $usage = "Usage:\n\t$0 [--driver=...] [--help] [--play] [--output|-o=file.pcm] [--exec|-e=code] [project-file.hacker] [-]";
 my %args = process_command_line(qw/driver=s play o|output=s e|exec=s h|help/, $usage);
 
 my @signal;
@@ -17,14 +17,19 @@ my $hacker = new Hacker(driver => $args{driver});
 
 my $console = $ARGV[-1] // '' eq '-';
 
-if (my $code = $args{exec}) {
-	my $code = q[use Hacker;] . $code;
+my $file = $ARGV[-1] // '';
+
+if (my $code = $args{exec} || !(-f $file)) {
+	if (!$code || $code eq '1') {
+		$code = join '', <>;
+	}
+	
+	$code = q[use Hacker;] . $code;
+		
 	# Execute
 	@signal = eval $code; die $@ if $@;
 } else {
-	my $file = pop @ARGV or die $usage;
-	die "No project file $file" unless -f $file;
-	
+	my $file = pop @ARGV;
 	@signal = load($file);
 }
 
