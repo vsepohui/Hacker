@@ -5,6 +5,8 @@ use warnings;
 
 use base 'Hacker::Player';
 
+use File::Temp qw(tempfile);
+
 
 sub new {
 	my $class = shift;
@@ -32,11 +34,14 @@ sub render {
 	
 	
 	my $filename = $self->{filename};
-
+	
+	my $ffmpeg = $filename =~ /\.(wav|mp3|flac|ogg)$/;
 	my $fh;
 	
-		
-	open $fh, '>' . $filename if ($filename ne '<STDOUT>');
+	($fh, $ffmpeg) = tempfile() if $ffmpeg;
+	
+	open $fh, '>' . $filename if ($filename ne '<STDOUT>' && !$ffmpeg);
+
 	
 	# Render PCM
 	my @s = ();
@@ -54,6 +59,8 @@ sub render {
 	}
 	
 	close $fh if ($filename ne '<STDOUT>');
+	
+	`ffmpeg -loglevel quiet -f s16le -ar 44100 -ac 1 -i $ffmpeg $filename` if $ffmpeg;
 
 	return;
 }
