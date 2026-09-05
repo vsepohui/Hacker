@@ -45,7 +45,7 @@ Run code from command line:
 Console RAW output and play a sound by an aplay util:
 
 ```
-./hacker -e 'chip sine' - | aplay -f s16_le -r 44100
+./hacker -e 'chip sine' - | aplay -q -f s16_le -r 44100
 ```
 
  
