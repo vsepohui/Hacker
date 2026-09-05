@@ -53,10 +53,10 @@ Run code from command line:
 ./hacker -e "chip sine"
 ```
 
-Console RAW output and play a sound by an aplay util:
+Console RAW output and play a sound by an ffplay util:
 
 ```
-./hacker -e "chip sine" - | aplay -q -f s16_le -r 44100
+./hacker -e "chip sine" - | ffplay -autoexit -loglevel quiet -nodisp -f s16le -ar 44100 -
 ```
 
 Console input:
