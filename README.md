@@ -36,9 +36,9 @@ Render Project (in RAW format):
 ./hacker -o filename.pcm Projects/One-hand-clapping.hacker
 ```
 
-Render flac (supported wav / mp3 / flac / ogg):
+Render to flac (supported wav / mp3 / flac / ogg):
 ```
-./hacker -o filename.flac Projects/One-hand-clapping.hacker
+./hacker -o filename.flac -e "chip sine"
 ```
 
 Run code from command line:
