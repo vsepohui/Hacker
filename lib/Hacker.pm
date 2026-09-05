@@ -213,9 +213,8 @@ sub silence {
 
 # Accessor
 sub transpose {
-	my $signal = shift;
-	my $value  = shift;
-	return Hacker::Effect::Transpose->new($value)->process(@$signal);
+	my $value  = pop;
+	return Hacker::Effect::Transpose->new($value)->process(@_);
 }
 
 # Alias for transpose
@@ -235,10 +234,9 @@ sub chip {
 
 # Accessor
 sub crop {
-	my $signal = shift;
-	my $length = shift;
+	my $length = pop;
 
-	return Hacker::Effect::Crop->new($length)->process(@$signal);
+	return Hacker::Effect::Crop->new($length)->process(@_);
 }
 
 # Accessor
