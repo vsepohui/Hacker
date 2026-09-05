@@ -27,7 +27,7 @@ sub play {
 
 	# Let's play audio by aplay utility
 	my $rate = $self->sample_rate;
-	`aplay -q -f s16_le -r $rate -c 1 $filename`;
+	`ffplay -autoexit -loglevel quiet -nodisp -f s16le -ar $rate $filename`;
 
 	# Remove tmp PCM file
 	unlink $filename;

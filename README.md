@@ -15,13 +15,19 @@ git clone https://github.com/vsepohui/Hacker
 ## On Debian / Ubuntu
 
 ```
-sudo apt install perl ffmpeg alsa-utils
+sudo apt install perl ffmpeg
 ```
 
 ## On Arch Linux / Manjaro
 
 ```
-sudo pacman -S perl ffmpeg alsa-utils
+sudo pacman -S perl ffmpeg
+```
+
+## On MacOS
+
+```
+sudo brew perl ffmpeg
 ```
 
 # Using of Hacker
