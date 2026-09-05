@@ -36,7 +36,7 @@ my @s1 = virtual (sub {
 my (@c1, @c2);
 for (@s1[0..1000]) {
 	push @c1, sine(int ($_*100) % 32, 0.1);
-	push @c2, sine(int ($_*100) % 32 - 12, 0.1);
+	push @c2, sine(int ($_*100) % 32 - 12, 0.2);
 }
 
 
