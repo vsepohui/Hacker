@@ -3,6 +3,9 @@ package Hacker::Project;
 use 5.022;
 use warnings;
 
+use Cwd 'abs_path';
+use File::Spec;
+
 
 sub new {
 	my $class = shift;
@@ -26,6 +29,9 @@ sub load_project {
 	open $fi, $file;
 	$project = join '', <$fi>;
 	close $fi;
+
+	my (undef, $dir) = File::Spec->splitpath(abs_path $file);
+	chdir $dir;
 	
 	# Adding header
 	$project = q[use Hacker;] . $project;

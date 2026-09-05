@@ -20,8 +20,8 @@ my @signal;
 
 my $hacker = new Hacker(driver => $args{driver});
 
-my $stdout = $ARGV[-1] // '' eq '-';
-my $stdin = $ARGV[-2] // '' eq '-';
+my $stdout = ($ARGV[-1] // '') eq '-';
+my $stdin = ($ARGV[-2] // '') eq '-';
 
 my $file = $args{input} // $ARGV[-1] // '';
 

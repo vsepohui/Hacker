@@ -1,4 +1,4 @@
 chip mix(
-	[load './Projects/Simple-Drum-Machine.hacker'],
-	[load './Projects/One-hand-clapping.hacker'],
+	[load 'Simple-Drum-Machine.hacker'],
+	[load 'One-hand-clapping.hacker'],
 );
