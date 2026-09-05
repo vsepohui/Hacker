@@ -4,25 +4,25 @@ Release just for demosceners and professional sound engeeners.
 
 All project developed by Yahwe, Ivan Trunaev, Russia.
 
-# Install Hacker
-
-## Getting Code
+# Getting Code
 
 ```
 git clone https://github.com/vsepohui/Hacker
 ```
 
+# Install Hacker
+
 ## On Debian / Ubuntu
 
 ```
-sudo apt install perl ffmpeg alsa-utils portaudio19-dev build-essential
+sudo apt install build-essential perl ffmpeg alsa-utils portaudio19-dev
 sudo cpan install Audio::PortAudio
 ```
 
 ## On Arch Linux / Manjaro
 
 ```
-sudo pacman -S perl ffmpeg alsa-utils portaudio base-devel
+sudo pacman -S base-devel perl ffmpeg alsa-utils portaudio
 sudo cpan install Audio::PortAudio
 ```
 
