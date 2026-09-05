@@ -17,13 +17,13 @@ sub play {
 	# Create tmp file
 	my (undef, $filename) = tempfile();
 	
+	my $render = new Hacker::Render(filename => $filename);
+	$render->render(@signal);
+
 	# Hook for delete tmp file is user try to kill the app
 	$SIG{INT} = sub {
 		unlink $filename;
 	};
-	
-	my $render = new Hacker::Render(filename => $filename);
-	$render->render(@signal);
 
 	# Let's play audio by aplay utility
 	my $rate = $self->sample_rate;
