@@ -15,15 +15,13 @@ git clone https://github.com/vsepohui/Hacker
 ## On Debian / Ubuntu
 
 ```
-sudo apt install build-essential perl ffmpeg alsa-utils portaudio19-dev
-sudo cpan install Audio::PortAudio
+sudo apt install perl ffmpeg alsa-utils
 ```
 
 ## On Arch Linux / Manjaro
 
 ```
-sudo pacman -S base-devel perl ffmpeg alsa-utils portaudio
-sudo cpan install Audio::PortAudio
+sudo pacman -S perl ffmpeg alsa-utils
 ```
 
 # Using of Hacker
