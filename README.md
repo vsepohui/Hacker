@@ -38,6 +38,12 @@ Render Project (in RAW format):
 ./hacker --render=filename.pcm Projects/One-hand-clapping.hacker
 ```
 
+Run code from command line:
+
+```
+./hacker --exec='chip sine'
+```
+
  
 # Example of Hacker Projects
 
