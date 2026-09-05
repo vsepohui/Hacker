@@ -56,7 +56,7 @@ Console RAW output and play a sound by an aplay util:
 Console input:
 
 ```
-echo 'chip sine' | ./hacker
+echo "chip sine" | ./hacker
 ```
 
  
