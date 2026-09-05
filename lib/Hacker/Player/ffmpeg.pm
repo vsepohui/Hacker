@@ -1,4 +1,4 @@
-package Hacker::Player::ALSA;
+package Hacker::Player::ffmpeg;
 
 use 5.022;
 use warnings;
