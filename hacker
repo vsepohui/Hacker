@@ -8,15 +8,23 @@ use lib "$Bin/lib";
 
 use Hacker;
 
-my $usage = "Usage:\n\t$0 [--driver=...] [--help] [--play] [--render=...] project-file.hacker";
-my %args = process_command_line(qw/driver=s play render=s h|help/, $usage);
+my $usage = "Usage:\n\t$0 [--driver=...] [--help] [--play] [--render=...] [--exec=code] project-file.hacker";
+my %args = process_command_line(qw/driver=s play render=s exec=s h|help/, $usage);
 
-my $file = pop @ARGV or die $usage;
-die "No project file $file" unless -f $file;
+my @signal;
 
 my $hacker = new Hacker(driver => $args{driver});
 
-my @signal = load($file);
+if (my $code = $args{exec}) {
+	my $code = q[use Hacker;] . $code;
+	# Execute
+	@signal = eval $code; die $@ if $@;
+} else {
+	my $file = pop @ARGV or die $usage;
+	die "No project file $file" unless -f $file;
+	
+	@signal = load($file);
+}
 
 if (my $file = $args{render}) {
 	$hacker->render($file => @signal);
