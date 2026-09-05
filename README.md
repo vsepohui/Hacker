@@ -51,7 +51,7 @@ Render Project (in RAW format):
 hacker -o filename.pcm Projects/One-hand-clapping.hacker
 ```
 
-Render to flac (supported wav / mp3 / flac / ogg):
+Render to flac (supported wav / mp3 / flac / ogg / m4a):
 ```
 hacker -o filename.flac -e "chip sine"
 ```

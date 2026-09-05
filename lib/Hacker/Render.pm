@@ -35,7 +35,7 @@ sub render {
 	
 	my $filename = $self->{filename};
 	
-	my $ffmpeg = $filename =~ /\.(wav|mp3|flac|ogg)$/;
+	my $ffmpeg = $filename =~ /\.(wav|mp3|flac|ogg|m4a)$/;
 	my $fh;
 	
 	($fh, $ffmpeg) = tempfile() if $ffmpeg;
