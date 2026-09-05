@@ -108,6 +108,25 @@ for (map {int rand(24)} 1..64) {
 mix(\@c1, \@c2)
 ```
 
+# Hack: How to install Hacker like a system application
+
+## On Linux Manjaro 
+
+```
+echo 'export PERL5LIB="$PWD/lib:$PERL5LIB"' >> ~/.zshrc && zsh ~/.zshrc
+sudo ln -s $PWD/hacker /usr/bin/hacker
+sudo ln -s $PWD/hacker.conf /etc/hacker.conf
+```
+
+## On Debian / Ubuntu
+
+```
+echo 'export PERL5LIB="$PWD/lib:$PERL5LIB"' >> ~/.bashrc && zsh ~/.bashrc
+sudo ln -s $PWD/hacker /usr/bin/hacker
+sudo ln -s $PWD/hacker.conf /etc/hacker.conf
+```
+
+
 # Bugs
 
 ## Crushes on memory leaks

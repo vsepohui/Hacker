@@ -13,7 +13,9 @@ sub new {
 	unless ($self) {
 		my $fi;
 		
-		open $fi, $Bin.'/hacker.conf';
+		
+		my $f = -f '/etc/hacker.conf' ? '/etc/hacker.conf' : $Bin . '/hacker.conf';
+		open $fi, $f;
 		my $s = join '', <$fi>;
 		close $fi;
 		
