@@ -39,7 +39,7 @@ Render Project (in RAW format):
 Run code from command line:
 
 ```
-./hacker -e 'chip sine'
+./hacker -e "chip sine"
 ```
 
 Console RAW output and play a sound by an aplay util:
