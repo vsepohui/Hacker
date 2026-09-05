@@ -33,14 +33,47 @@ my @s1 = virtual (sub {
 	return sin($alpha*$offset);
 })->sig (0, 1);
 
+my @s2 = virtual (sub {
+	my $offset = shift;
+
+	my $x;
+	
+	my $alpha;
+	if ($a > $b) {
+		$x = $b / $a;
+		$alpha = asin($b / $c);
+
+		$c = acos($alpha / 2.0) * $b;
+		$a = sqrt($c*$c - $b*$b);
+	} else {
+		$x = $b / $a;
+		$alpha = asin($a / $c);
+
+		$c = acos($alpha / 2.0) * $a;
+		$b = sqrt($c*$c - $a*$a);
+	}
+	
+	if ($c < 10) {
+		$a *= 10;
+		$b *= 10;
+	}
+	
+	$c = sqrt($a*$a+$b*$b);
+	
+
+	return cos($alpha*$offset);
+})->sig (0, 1);
+
+
+
 my (@c1, @c2);
-for (@s1[0..1000]) {
-	push @c1, sine(int ($_*100) % 32, 0.1);
-	push @c2, sine(int ($_*100) % 32 - 12, 0.2);
+for (0..100) {
+	push @c1, sine int ($s1[$_]*100) % 32, 0.4;
+	push @c2, sine int ($s2[$_]*100) % 32, 0.8;
 }
 
 
 
 
 
-chip mix(\@c1, \@c2);
+mix(\@c1, \@c2);
