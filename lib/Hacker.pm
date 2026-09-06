@@ -25,6 +25,7 @@ use Hacker::Effect::Reverse;
 use Hacker::Effect::Delay;
 use Hacker::Effect::Crop;
 use Hacker::Effect::Gainer;
+use Hacker::Effect::Limiter;
 use Hacker::Effect::Chiptune;
 
 use Hacker::Config;
@@ -235,6 +236,10 @@ sub pitch {
 # Accessor
 sub rev {
 	return Hacker::Effect::Reverse->new()->process(@_);
+}
+
+sub limit {
+	return Hacker::Effect::Limiter->new()->process(@_);
 }
 
 # Accessor
