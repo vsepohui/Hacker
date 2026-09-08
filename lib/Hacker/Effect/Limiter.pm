@@ -11,7 +11,7 @@ sub process {
 	my $limit = pop;
 	my @s = @_;
 	
-	return map {$_ > 0 ? ($_ > $limit ? $limit : $_ ) : ($_ <= 0 && $_ < -1 * $limit ) ? -1 * $limit : $_} @s;
+	return map {$_ > 0 ? $_ > $limit ? $limit : $_  : $_ < -1 * $limit ? -1 * $limit : $_} @s;
 }
 
 1;
