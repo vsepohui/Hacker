@@ -17,19 +17,19 @@ git clone https://github.com/vsepohui/Hacker
 ### On Debian / Ubuntu
 
 ```
-sudo apt install perl ffmpeg
+sudo apt install perl ffmpeg espeak-ng
 ```
 
 ### On Arch Linux / Manjaro
 
 ```
-sudo pacman -S perl ffmpeg
+sudo pacman -S perl ffmpeg espeak-ng
 ```
 
 ### On MacOS
 
 ```
-brew install perl ffmpeg
+brew install perl ffmpeg espeak-ng
 ```
 ## Install Hacker
 

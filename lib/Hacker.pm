@@ -4,7 +4,7 @@ use 5.022;
 use warnings;
 
 use Exporter qw(import);
-our @EXPORT = qw(sample sampler seq sequenser mix mixer rev crop silence transpose pitch delay noise process_command_line triangle sine sun saw load gain virtual chip e limit);
+our @EXPORT = qw(sample sampler speech seq sequenser mix mixer rev crop silence transpose pitch delay noise process_command_line triangle sine sun saw load gain virtual chip e limit);
 
 use Getopt::Long qw(GetOptions);
 
@@ -15,6 +15,7 @@ use Hacker::Synth::Saw;
 use Hacker::Synth::Sin;
 use Hacker::Synth::Triangle;
 use Hacker::Synth::Sampler;
+use Hacker::Synth::Speech;
 use Hacker::Synth::Sequensor;
 use Hacker::Synth::Noise;
 use Hacker::Synth::Silence;
@@ -177,6 +178,11 @@ sub triangle {
 # Accessor (for support old Projects)
 sub sampler {
 	return Hacker::Synth::Sampler->new(@_);
+}
+
+# Accessor
+sub speech {
+	return Hacker::Synth::Speech->new(@_);
 }
 
 # Accessor
