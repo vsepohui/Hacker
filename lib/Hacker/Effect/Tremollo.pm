@@ -11,7 +11,13 @@ sub new {
 	my $value = shift;
 
 	use Carp;
-	confess $value unless $value =~ /^\d+$/;
+	if ($value =~ /^(\d+\.?\d*)(s|f)?$/) { 
+		$value = $1;
+		my $m = $2 // 's';
+		$value = $class->sample_rate() * $value if $m eq 's';
+	} else {
+		confess "Worng value: $value";
+	}
 	
 	return $class->SUPER::new(value => $value);
 }

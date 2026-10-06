@@ -3,18 +3,8 @@ package Hacker::Effect::Tremollo2;
 use 5.022;
 use warnings;
 
-use base 'Hacker::Effect';
+use base 'Hacker::Effect::Tremollo';
 
-
-sub new {
-	my $class = shift;
-	my $value = shift;
-
-	use Carp;
-	confess $value unless $value =~ /^\d+$/;
-	
-	return $class->SUPER::new(value => $value);
-}
 
 sub process {
 	my $self = shift;
