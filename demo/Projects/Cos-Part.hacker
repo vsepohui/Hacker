@@ -1,1 +1,1 @@
-tremollo cos_p('c3'), 0.01;
+tremollo cos_p('c3'), '100f';
