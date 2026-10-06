@@ -1,4 +1,4 @@
-package Hacker::Effect::Tremollo;
+package Hacker::Effect::Tremollo2;
 
 use 5.022;
 use warnings;
@@ -32,7 +32,7 @@ sub process {
 			$s -= $v;
 			$x ++;
 		}
-		push @out, $s[int $i] * ($x % 2 ? 0 : 1);
+		push @out, $s[int $i] * ($x % 2 ? -1 : 1);
 		$s ++;
 	}
 	return @out;
