@@ -4,7 +4,7 @@ use 5.022;
 use warnings;
 
 use Exporter qw(import);
-our @EXPORT = qw(sample sampler speech seq sequenser mix mixer rev crop silence transpose pitch delay noise process_command_line triangle sine cos_p sun saw load gain virtual chip e limit);
+our @EXPORT = qw(sample sampler speech seq sequenser mix mixer rev crop silence transpose pitch delay noise process_command_line triangle sine cos_p sun saw load gain virtual chip tremollo e limit);
 
 use Getopt::Long qw(GetOptions);
 
@@ -29,6 +29,7 @@ use Hacker::Effect::Crop;
 use Hacker::Effect::Gainer;
 use Hacker::Effect::Limiter;
 use Hacker::Effect::Chiptune;
+use Hacker::Effect::Tremollo;
 
 use Hacker::Config;
 use Hacker::Project;
@@ -243,6 +244,11 @@ sub transpose {
 # Alias for transpose
 sub pitch {
 	transpose(@_);
+}
+
+sub tremollo {
+	my $value = pop;
+	return Hacker::Effect::Tremollo->new($value)->process(@_);
 }
 
 # Accessor
