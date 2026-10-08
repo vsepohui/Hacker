@@ -39,9 +39,8 @@ sub rand {
 	my $num = shift;
 	
 	my $r = (harmonic($SEED)+1)/2.0;
-	$SEED *= $r+0.5;
-	$SEED /= 101 if ($SEED >= 10**22);
-	
+	$SEED *= $r+1.5;
+	$SEED /= 2 if ($SEED >= 100000000);
 
 	my $s = $r;
 	$s =~ s/\.//;
