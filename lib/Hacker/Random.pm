@@ -44,7 +44,7 @@ sub rand {
 
 	my $s = $r;
 	$s =~ s/\.//;
-	$r = $r * substr($s, -5, -1);
+	$r *= substr($s, -5, -1) || 0;
 	$r = substr($r, 0, 22);
 	$r =~ s/\.//;
 	#$r = $r;
