@@ -4,7 +4,7 @@ use 5.022;
 use warnings;
 
 use Exporter qw(import);
-our @EXPORT = qw(sample sampler speech seq sequenser mix mixer rev crop silence eq transpose pitch delay noise process_command_line triangle sine cos_p sun saw load gain virtual chip tremollo tremollo2 e limit);
+our @EXPORT = qw(sample sampler speech seq sequenser mix mixer rev crop silence eq distortion transpose pitch delay noise process_command_line triangle sine cos_p sun saw load gain virtual chip tremollo tremollo2 e limit);
 
 use Getopt::Long qw(GetOptions);
 
@@ -23,6 +23,7 @@ use Hacker::Synth::Silence;
 use Hacker::Synth::Virtual;
 use Hacker::Mixer;
 use Hacker::Effect::EQ;
+use Hacker::Effect::Distortion;
 use Hacker::Effect::Transpose;
 use Hacker::Effect::Reverse;
 use Hacker::Effect::Delay;
@@ -237,11 +238,16 @@ sub silence {
 	return Hacker::Synth::Silence->signal(0, $length);
 }
 
-
 # Accessor
 sub eq {
 	my $args = pop;
 	return Hacker::Effect::EQ->new(%$args)->process(@_);
+}
+
+# Accessor
+sub distortion {
+	my $threshold = pop;
+	return Hacker::Effect::Distortion->new($threshold)->process(@_);
 }
 
 # Accessor
