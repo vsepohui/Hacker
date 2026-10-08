@@ -17,21 +17,14 @@ sub srand {
 
 
 sub harmonic {
-	my $t = shift;
+	my $x = shift;
 	
-	my $half_freq = 2/7.0;
+	state $half_freq = 2/7.0;
 
-	my $j;
-	my $step = int ($t / $half_freq);
+	my $step = int ($x / $half_freq);
+	$x -= $step * $half_freq;
 
-	if (($step % 2) == 0) {
-		$j = 1;
-	} else {
-		$j = -1;
-	}
-	$t -= $step * $half_freq;
-	
-	return $j*sqrt (1 - $t*$t);
+	return ($step % 2 ? -1 : 1) * sqrt (1 - $x*$x);
 }
 	
 
