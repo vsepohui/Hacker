@@ -5,8 +5,9 @@ use warnings;
 
 use base 'Hacker::Effect';
 
-use POSIX qw(fmod);
+# Fork from https://www.musicdsp.org/en/latest/Effects/203-fold-back-distortion.html
 
+use POSIX qw(fmod);
 
 sub new {
 	my $class = shift;
