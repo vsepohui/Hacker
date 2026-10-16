@@ -18,7 +18,7 @@ You can try to hearing my Projects in https://github.com/vsepohui/Hacker-Project
 
 
 ```
-https://github.com/vsepohui/Hacker-Projects/archive/refs/heads/main.zip
+https://github.com/vsepohui/Hacker-Projects/
 ```
 
 
