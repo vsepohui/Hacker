@@ -8,7 +8,7 @@ ffmpeg, espeak
 
 # My Hacker Projects
 
-You can try to hearing my Projects in https://github.com/vsepohui/Hacker-Projects
+You can try to hearing my Projects:
 
 ```
 https://github.com/vsepohui/Hacker-Projects/
