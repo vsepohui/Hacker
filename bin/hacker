@@ -74,7 +74,7 @@ hacker - Console DAW for music engeeners
     
         hacker -e "chip sine" -o filename.raw
         hacker -i project.hacker -o filename.raw
-        echo "chip sine" | hacker | aplay -q -f s16_le -r 44100 -
+        echo "chip sine" | hacker | ffplay -autoexit -loglevel quiet -nodisp -f s16le -ar 44100
    		 
     Options:
   

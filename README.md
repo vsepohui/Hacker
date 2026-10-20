@@ -4,18 +4,11 @@ Release just for demosceners and professional sound engeeners.
 
 # Dependencies
 
-alsa-utils, espeak, ffmpeg
-
-# Installation
-
-```
-curl -s https://vsepohui.ru/hacker.sh | sudo sh
-```
+ffmpeg, espeak
 
 # My Hacker Projects
 
 You can try to hearing my Projects in https://github.com/vsepohui/Hacker-Projects
-
 
 ```
 https://github.com/vsepohui/Hacker-Projects/
@@ -49,7 +42,7 @@ hacker -e "chip sine"
 Console RAW output and play a sound by an ffplay util:
 
 ```
-hacker -e "chip sine" - | aplay -q-f s16_le -r 44100
+hacker -e "chip sine" - | ffplay -autoexit -loglevel quiet -nodisp -f s16le -ar 44100
 ```
 
 Console input:
@@ -60,7 +53,7 @@ echo "chip sine" | hacker
 
 Console input and output:
 ```
-echo "chip sine" | hacker | aplay -q-f s16_le -r 44100
+echo "chip sine" | hacker | ffplay -autoexit -loglevel quiet -nodisp -f s16le -ar 44100
 ```
 
 
