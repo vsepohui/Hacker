@@ -44,7 +44,7 @@ use Math::Trig qw(asin acos);
 
 use Carp;
 
-our $VERSION = '0.6';
+our $VERSION = '0.61';
 
 
 # Constructor
