@@ -113,3 +113,10 @@ Please, don't make release, based on my projects! It's rip of my creative! Code 
 # Credits
 
 All project developed by Yahwe, Ivan Trunaev, Russia.
+
+# Licence 
+
+Commercial support by Author for Open Source!
+
+Contact <ivan@trunaev.ru>
+
